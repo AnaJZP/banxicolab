@@ -7,7 +7,7 @@ name = "siebanxico"
 dynamic = ["version"]
 description = "Cliente no oficial en Python para la API del SIE de Banco de México: descarga de series y transformaciones para análisis económico."
 readme = "README.md"
-license = "MIT"
+license = "BSD-3-Clause"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
 authors = [{ name = "Ana Lorena Jiménez Preciado" }]  # ESE - IPN
