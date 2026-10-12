@@ -17,3 +17,6 @@ site/
 
 # Configuración local del asistente
 .claude/
+
+# Material del trámite de registro de obra (no es parte de la librería)
+registro_indautor/
