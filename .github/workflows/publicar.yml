@@ -1,11 +1,11 @@
 name: Publicar en PyPI
 
-# Se ejecuta al publicar un «release» en GitHub. No usa contraseñas ni tokens:
-# PyPI confía en este flujo por «Trusted Publishing» (hay que darlo de alta una
-# vez en https://pypi.org/manage/account/publishing/ con el entorno «pypi»).
+# Se ejecuta al subir una etiqueta de versión (por ejemplo v0.3.0). No usa
+# contraseñas ni tokens: PyPI confía en este flujo por «Trusted Publishing»,
+# dado de alta en https://pypi.org/manage/account/publishing/ con el entorno «pypi».
 on:
-  release:
-    types: [published]
+  push:
+    tags: ["v*"]
 
 jobs:
   publicar:

@@ -1,6 +1,6 @@
-"""siebanxico: series del SIE de Banco de México listas para analizar.
+"""banxicolab: series del SIE de Banco de México listas para analizar.
 
->>> import siebanxico as sie
+>>> import banxicolab as sie
 >>> df = sie.descargar(["inpc", "fix"], inicio="2015-01-01")   # doctest: +SKIP
 >>> sie.inflacion(df["inpc"]).tail()                            # doctest: +SKIP
 

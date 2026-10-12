@@ -16,23 +16,23 @@ En este orden, y se queda con el primero que encuentre:
 | 1 | Argumento `Banxico(token=...)` | Pruebas; evítalo en código que compartes |
 | 2 | Variable de entorno `BANXICO_TOKEN` (o `BMX_TOKEN`) | Servidores, tareas programadas, CI |
 | 3 | *Secrets* de Google Colab con ese nombre | Colab |
-| 4 | Archivo guardado con `siebanxico token` | Tu computadora |
+| 4 | Archivo guardado con `banxicolab token` | Tu computadora |
 | 5 | Pregunta con `getpass` | Primera vez, o equipos prestados |
 
 ## En tu computadora
 
 ```bash
-siebanxico token
+banxicolab token
 ```
 
-Lo pide sin mostrarlo y lo guarda en `~/.config/siebanxico/token` (en Windows,
-`%APPDATA%\siebanxico\token`) con permisos `600`: solo tu usuario puede leerlo.
+Lo pide sin mostrarlo y lo guarda en `~/.config/banxicolab/token` (en Windows,
+`%APPDATA%\banxicolab\token`) con permisos `600`: solo tu usuario puede leerlo.
 Desde Python es equivalente a `sie.guardar_token()`.
 
 Para eliminarlo:
 
 ```bash
-siebanxico token --borrar
+banxicolab token --borrar
 ```
 
 ## En Google Colab

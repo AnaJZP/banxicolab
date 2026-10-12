@@ -31,7 +31,7 @@ def ruta_token() -> Path:
         base = Path(os.environ.get("APPDATA", Path.home() / "AppData" / "Roaming"))
     else:
         base = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config"))
-    return base / "siebanxico" / "token"
+    return base / "banxicolab" / "token"
 
 
 def enmascarar(token: str) -> str:
@@ -110,7 +110,7 @@ def obtener_token(token: str | None = None, *, preguntar: bool = True) -> str:
     raise TokenNoEncontrado(
         "No encontré un token del SIE. Opciones:\n"
         "  • define la variable de entorno BANXICO_TOKEN,\n"
-        "  • ejecuta `siebanxico token` (o siebanxico.guardar_token()) una sola vez,\n"
+        "  • ejecuta `banxicolab token` (o banxicolab.guardar_token()) una sola vez,\n"
         "  • en Colab, agrégalo en Secrets con el nombre BANXICO_TOKEN.\n"
         f"Si aún no tienes uno, se genera gratis en {URL_TOKEN}"
     )

@@ -8,7 +8,7 @@ La inflación anual compara con hace doce meses, así que tarda en mostrar los
 cambios de dirección. Lecturas complementarias:
 
 ```python
-import siebanxico as sie
+import banxicolab as sie
 
 indices = sie.descargar(["inpc", "inpc_subyacente"], "2005-01-01")
 

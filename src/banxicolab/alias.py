@@ -276,7 +276,7 @@ def resolver(clave: str) -> tuple[str, str]:
     pista = f" ¿Quisiste decir {', '.join(map(repr, parecidas))}?" if parecidas else ""
     raise SerieNoEncontrada(
         f"{clave!r} no es un identificador del SIE (p. ej. 'SF43718') ni un alias conocido."
-        f"{pista} Consulta siebanxico.catalogo() o usa siebanxico.buscar('texto')."
+        f"{pista} Consulta banxicolab.catalogo() o usa banxicolab.buscar('texto')."
     )
 
 

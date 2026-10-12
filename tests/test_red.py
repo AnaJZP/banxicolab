@@ -8,7 +8,7 @@ import os
 
 import pytest
 
-import siebanxico as sie
+import banxicolab as sie
 
 
 @pytest.mark.red

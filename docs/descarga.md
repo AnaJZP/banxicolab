@@ -8,7 +8,7 @@ proxies.
 ## `descargar`
 
 ```python
-import siebanxico as sie
+import banxicolab as sie
 
 # Una serie, historia completa
 sie.descargar("inpc")
@@ -153,21 +153,21 @@ una advertencia y esas columnas quedan en `NaN`.
 ## Desde la terminal
 
 ```bash
-siebanxico descargar inpc fix --inicio 2020-01-01 -o datos.csv
+banxicolab descargar inpc fix --inicio 2020-01-01 -o datos.csv
 ```
 
 ```bash
-siebanxico descargar --tema tasas --mensual --inicio 2015-01-01 -o tasas.csv
+banxicolab descargar --tema tasas --mensual --inicio 2015-01-01 -o tasas.csv
 ```
 
 ```bash
-siebanxico catalogo precios
+banxicolab catalogo precios
 ```
 
 ```bash
-siebanxico buscar remesas
+banxicolab buscar remesas
 ```
 
 ```bash
-siebanxico metadatos inpc SF43718
+banxicolab metadatos inpc SF43718
 ```

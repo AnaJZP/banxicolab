@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "siebanxico"
+name = "banxicolab"
 dynamic = ["version"]
 description = "Cliente no oficial en Python para la API del SIE de Banco de México: descarga de series y transformaciones para análisis económico."
 readme = "README.md"
@@ -35,18 +35,18 @@ dev = ["pytest>=8", "ruff>=0.6", "statsmodels>=0.14", "matplotlib>=3.7"]
 docs = ["mkdocs>=1.6,<2", "mkdocs-material>=9.5", "mkdocstrings[python]>=0.26"]
 
 [project.urls]
-Repositorio = "https://github.com/AnaJZP/siebanxico"
-Documentacion = "https://anajzp.github.io/siebanxico/"
-Problemas = "https://github.com/AnaJZP/siebanxico/issues"
+Repositorio = "https://github.com/AnaJZP/banxicolab"
+Documentacion = "https://anajzp.github.io/banxicolab/"
+Problemas = "https://github.com/AnaJZP/banxicolab/issues"
 
 [project.scripts]
-siebanxico = "siebanxico.cli:main"
+banxicolab = "banxicolab.cli:main"
 
 [tool.hatch.version]
-path = "src/siebanxico/__init__.py"
+path = "src/banxicolab/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/siebanxico"]
+packages = ["src/banxicolab"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

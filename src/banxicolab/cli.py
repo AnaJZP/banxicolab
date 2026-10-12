@@ -1,4 +1,4 @@
-"""Interfaz de línea de comandos: ``siebanxico --help``."""
+"""Interfaz de línea de comandos: ``banxicolab --help``."""
 
 from __future__ import annotations
 
@@ -16,9 +16,9 @@ from .token import borrar_token, guardar_token, ruta_token
 
 def _parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        prog="siebanxico", description="Series del SIE de Banco de México desde la terminal."
+        prog="banxicolab", description="Series del SIE de Banco de México desde la terminal."
     )
-    p.add_argument("--version", action="version", version=f"siebanxico {__version__}")
+    p.add_argument("--version", action="version", version=f"banxicolab {__version__}")
     sub = p.add_subparsers(dest="comando", required=True)
 
     t = sub.add_parser("token", help="guarda tu token de forma segura (no se muestra al escribir)")

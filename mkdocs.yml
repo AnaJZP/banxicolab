@@ -1,8 +1,8 @@
-site_name: siebanxico
+site_name: banxicolab
 site_description: Series del SIE de Banco de México listas para analizar en Python
 docs_dir: docs
-site_url: https://anajzp.github.io/siebanxico/
-repo_url: https://github.com/AnaJZP/siebanxico
+site_url: https://anajzp.github.io/banxicolab/
+repo_url: https://github.com/AnaJZP/banxicolab
 site_author: Ana Lorena Jiménez Preciado
 theme:
   name: material

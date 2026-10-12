@@ -1,20 +1,20 @@
 # Referencia
 
-Todo se importa desde el paquete: `import siebanxico as sie`.
+Todo se importa desde el paquete: `import banxicolab as sie`.
 
 ## Cliente
 
-::: siebanxico.Banxico
+::: banxicolab.Banxico
 
 ## Token
 
-::: siebanxico.obtener_token
-::: siebanxico.guardar_token
-::: siebanxico.borrar_token
+::: banxicolab.obtener_token
+::: banxicolab.guardar_token
+::: banxicolab.borrar_token
 
 ## Catálogo
 
-::: siebanxico.catalogo
+::: banxicolab.catalogo
 
 Las funciones `descargar`, `panel`, `serie`, `metadatos`, `oportuno`, `buscar` e
 `info` existen también a nivel de módulo (`sie.descargar(...)`), con los mismos
@@ -22,59 +22,59 @@ parámetros que los métodos de `Banxico`.
 
 ## Frecuencia y diagnóstico
 
-::: siebanxico.frecuencia
-::: siebanxico.diagnostico
-::: siebanxico.a_mensual
-::: siebanxico.valor_en
+::: banxicolab.frecuencia
+::: banxicolab.diagnostico
+::: banxicolab.a_mensual
+::: banxicolab.valor_en
 
 ## Números índice
 
-::: siebanxico.indice_base
-::: siebanxico.cambiar_base
-::: siebanxico.empalmar
+::: banxicolab.indice_base
+::: banxicolab.cambiar_base
+::: banxicolab.empalmar
 
 ## Tasas de variación
 
-::: siebanxico.variacion
-::: siebanxico.variacion_anual
-::: siebanxico.anualizar
+::: banxicolab.variacion
+::: banxicolab.variacion_anual
+::: banxicolab.anualizar
 
 ## Inflación y precios constantes
 
-::: siebanxico.inflacion
-::: siebanxico.inflacion_entre
-::: siebanxico.deflactar
-::: siebanxico.a_pesos_de
-::: siebanxico.tasa_real
+::: banxicolab.inflacion
+::: banxicolab.inflacion_entre
+::: banxicolab.deflactar
+::: banxicolab.a_pesos_de
+::: banxicolab.tasa_real
 
 ## Tendencia y pronósticos
 
-::: siebanxico.impulso
-::: siebanxico.persistencia
-::: siebanxico.pronosticar_inflacion
-::: siebanxico.evaluar_pronosticos
+::: banxicolab.impulso
+::: banxicolab.persistencia
+::: banxicolab.pronosticar_inflacion
+::: banxicolab.evaluar_pronosticos
 
 ## Rendimientos e inflación implícita
 
-::: siebanxico.rendimiento_bono
-::: siebanxico.precio_bono
-::: siebanxico.inflacion_implicita
-::: siebanxico.inflacion_implicita_forward
+::: banxicolab.rendimiento_bono
+::: banxicolab.precio_bono
+::: banxicolab.inflacion_implicita
+::: banxicolab.inflacion_implicita_forward
 
 ## Cambio de unidades
 
-::: siebanxico.estandarizar
-::: siebanxico.min_max
-::: siebanxico.escalar_robusto
+::: banxicolab.estandarizar
+::: banxicolab.min_max
+::: banxicolab.escalar_robusto
 
 ## Estacionalidad y estacionariedad
 
-::: siebanxico.desestacionalizar
-::: siebanxico.prueba_adf
+::: banxicolab.desestacionalizar
+::: banxicolab.prueba_adf
 
 ## Excepciones
 
-::: siebanxico.errores
+::: banxicolab.errores
     options:
       show_root_heading: false
       heading_level: 3

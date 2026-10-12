@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-import siebanxico as sie
+import banxicolab as sie
 
 
 def test_tabla_de_inflacion():

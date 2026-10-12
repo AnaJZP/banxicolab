@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-import siebanxico as sie
+import banxicolab as sie
 
 P = pd.Series(
     [100.0, 108.0, 102.0, 115.0, 110.0], index=pd.date_range("2020-01-01", periods=5, freq="MS")

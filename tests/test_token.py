@@ -4,8 +4,8 @@ import stat
 import pytest
 from conftest import TOKEN
 
-import siebanxico as sie
-from siebanxico import token as modulo
+import banxicolab as sie
+from banxicolab import token as modulo
 
 
 def test_orden_de_busqueda(monkeypatch):

@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-import siebanxico as sie
-from siebanxico import renta_fija
+import banxicolab as sie
+from banxicolab import renta_fija
 
 
 def test_bono_a_la_par_rinde_su_cupon():

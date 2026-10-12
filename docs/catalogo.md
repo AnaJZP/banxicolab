@@ -109,4 +109,4 @@ sie.descargar({"SF282": "cetes_28_mensual"})  # y úsala con el nombre que quier
 ```
 
 Para agregar un alias permanente, añade una fila al tema que corresponda en
-`_POR_TEMA`, dentro de `src/siebanxico/alias.py`.
+`_POR_TEMA`, dentro de `src/banxicolab/alias.py`.

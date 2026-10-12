@@ -5,7 +5,7 @@ Un análisis completo, de la descarga a la tasa real.
 ## La tabla de inflación
 
 ```python
-import siebanxico as sie
+import banxicolab as sie
 
 tabla = sie.Banxico().inflacion("2018-01-01")
 tabla.tail()

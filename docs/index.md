@@ -1,4 +1,4 @@
-# siebanxico
+# banxicolab
 
 Series del **Sistema de Información Económica (SIE) de Banco de México** en un
 `DataFrame`, con el token fuera del código y las transformaciones habituales
@@ -11,12 +11,12 @@ para analizar inflación, tipo de cambio y tasas.
 ## En un minuto
 
 ```bash
-pip install "siebanxico[analisis] @ git+https://github.com/AnaJZP/siebanxico.git"
-siebanxico token               # guarda tu token una sola vez, sin mostrarlo
+pip install "banxicolab[analisis] @ git+https://github.com/AnaJZP/banxicolab.git"
+banxicolab token               # guarda tu token una sola vez, sin mostrarlo
 ```
 
 ```python
-import siebanxico as sie
+import banxicolab as sie
 
 df = sie.descargar(["inpc", "fix", "tasa_objetivo"], inicio="2015-01-01")
 sie.inflacion(df["inpc"]).tail()

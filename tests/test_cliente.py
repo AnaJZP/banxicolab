@@ -4,8 +4,8 @@ import pytest
 import requests
 from conftest import TOKEN, Respuesta, SesionFalsa
 
-import siebanxico as sie
-from siebanxico.cliente import _resolver_series
+import banxicolab as sie
+from banxicolab.cliente import _resolver_series
 
 
 def serie_json(id_serie, datos, titulo="Título   con   espacios"):

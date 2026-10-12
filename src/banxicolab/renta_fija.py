@@ -165,7 +165,7 @@ def desde_vector(datos: pd.DataFrame) -> pd.DataFrame:
 
     ``datos`` debe traer las columnas ``precio_``, ``cupon_`` y ``dias_`` con
     sufijo ``nominal`` y ``real``, más ``udi``. Es lo que usa
-    :meth:`siebanxico.Banxico.inflacion_implicita`.
+    :meth:`banxicolab.Banxico.inflacion_implicita`.
     """
     d = datos.dropna(subset=["precio_nominal", "precio_real", "udi"])
     nominal = rendimiento_bono(d["precio_nominal"], d["cupon_nominal"], d["dias_nominal"])

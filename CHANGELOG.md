@@ -1,12 +1,15 @@
 # Cambios
 
-## 0.3.0 — 2026-10-06
+## 0.3.0 — 2026-10-12
+
+Primera versión en PyPI. El paquete se llama `banxicolab` (antes `siebanxico`, nombre que PyPI
+rechazó por parecerse a otro paquete existente).
 
 - `panel`: descarga y deja las series en frecuencia mensual con la regla de agregación del catálogo.
 - `descargar(tema=...)` y `panel(tema=...)`: un tema completo del catálogo.
 - `catalogo(tema, buscar=...)`: el catálogo ahora está organizado por temas y se puede filtrar.
 - Los índices quincenales se agregan a mensual por promedio, como define el INPC.
-- Terminal: `siebanxico catalogo [tema]`, `siebanxico descargar --tema ... --mensual`.
+- Terminal: `banxicolab catalogo [tema]`, `banxicolab descargar --tema ... --mensual`.
 
 ## 0.2.0 — 2026-10-06
 
@@ -28,4 +31,4 @@ Primera versión.
 - Catálogo de alias para las series más usadas.
 - Transformaciones: índices, variaciones, deflactar, tasa real, escalamientos, ajuste estacional.
 - Diagnóstico y prueba ADF.
-- Comando `siebanxico` para la terminal.
+- Comando `banxicolab` para la terminal.

@@ -1,4 +1,4 @@
-# siebanxico
+# banxicolab
 
 Series del **Sistema de Información Económica (SIE) de Banco de México** en un
 `DataFrame`, con el token fuera del código y las transformaciones habituales
@@ -7,7 +7,7 @@ para analizar inflación, tipo de cambio y tasas.
 > Librería **no oficial**. No está afiliada ni respaldada por Banco de México.
 
 ```python
-import siebanxico as sie
+import banxicolab as sie
 
 df = sie.descargar(["inpc", "fix", "tasa_objetivo"], inicio="2015-01-01")
 sie.inflacion(df["inpc"]).tail()
@@ -18,7 +18,7 @@ sie.inflacion(df["inpc"]).tail()
 Se instala directamente desde GitHub (también en Google Colab, anteponiendo `!`):
 
 ```bash
-pip install "siebanxico[analisis] @ git+https://github.com/AnaJZP/siebanxico.git"
+pip install "banxicolab[analisis] @ git+https://github.com/AnaJZP/banxicolab.git"
 ```
 
 Para desarrollar, clona el repositorio e instala en modo editable:
@@ -36,7 +36,7 @@ El token gratuito se genera en
 <https://www.banxico.org.mx/SieAPIRest/service/v1/token>. Guárdalo **una sola vez**:
 
 ```bash
-siebanxico token
+banxicolab token
 ```
 
 Se pide sin mostrarlo en pantalla y queda en un archivo que solo tu usuario
@@ -45,7 +45,7 @@ librería lo busca en este orden:
 
 1. variable de entorno `BANXICO_TOKEN` (o `BMX_TOKEN`),
 2. *Secrets* de Google Colab con ese mismo nombre,
-3. el archivo guardado con `siebanxico token`,
+3. el archivo guardado con `banxicolab token`,
 4. si nada de lo anterior existe, lo pregunta con `getpass`.
 
 Además, el token viaja en un encabezado HTTP y no en la URL, así que no aparece
@@ -56,7 +56,7 @@ en mensajes de error, y `repr(cliente)` solo muestra los últimos 4 caracteres.
 Hay tres formas de pedir datos; se pueden mezclar en la misma llamada.
 
 ```python
-import siebanxico as sie
+import banxicolab as sie
 
 # 1. Por clave del SIE: cualquier serie de Banxico, esté o no en el catálogo
 sie.descargar("SF43718")
@@ -218,7 +218,7 @@ sie.evaluar_pronosticos(inpc, desde="2012-01-01")  # error fuera de muestra vs. 
 ## Documentación
 
 La guía completa y la referencia de cada función están en
-**<https://anajzp.github.io/siebanxico/>**.
+**<https://anajzp.github.io/banxicolab/>**.
 
 Para verla en tu computadora mientras la editas:
 

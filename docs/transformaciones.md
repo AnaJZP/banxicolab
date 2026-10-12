@@ -7,7 +7,7 @@ cualquier fuente.
 Los ejemplos suponen:
 
 ```python
-import siebanxico as sie
+import banxicolab as sie
 
 inpc = sie.serie("inpc", "2000-01-01")
 diarias = sie.descargar(["fix", "tasa_objetivo", "cetes_28"], "2000-01-01")

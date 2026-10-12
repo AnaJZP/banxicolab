@@ -84,7 +84,7 @@ class Banxico:
     ----------
     token : str, opcional
         Token de consulta. Lo normal es **no** pasarlo y dejar que se resuelva
-        desde el entorno; ver :func:`siebanxico.obtener_token`.
+        desde el entorno; ver :func:`banxicolab.obtener_token`.
     timeout : float
         Segundos de espera por petición.
     reintentos : int
@@ -95,13 +95,13 @@ class Banxico:
     espera_maxima : float
         Si se supera el límite de consultas y el desbloqueo ocurre en menos de
         estos segundos, se espera y se reintenta; si no, se lanza
-        :class:`~siebanxico.LimiteExcedido`.
+        :class:`~banxicolab.LimiteExcedido`.
     sesion : requests.Session, opcional
         Sesión propia (proxies, certificados corporativos, pruebas).
 
     Examples
     --------
-    >>> import siebanxico as sie
+    >>> import banxicolab as sie
     >>> bmx = sie.Banxico()                                   # doctest: +SKIP
     >>> bmx.descargar(["inpc", "fix"], inicio="2015-01-01")   # doctest: +SKIP
     """
@@ -248,7 +248,7 @@ class Banxico:
             límite de 20 series: la consulta se parte en lotes automáticamente.
         tema : str, opcional
             En lugar de ``series``, todas las del catálogo de un tema
-            (``"tasas"``, ``"tipo_de_cambio"``…); ver :func:`siebanxico.catalogo`.
+            (``"tasas"``, ``"tipo_de_cambio"``…); ver :func:`banxicolab.catalogo`.
         inicio, fin : fecha, opcional
             Cualquier cosa que entienda ``pandas.Timestamp``. Si se omiten ambas
             se descarga la historia completa; si falta ``fin`` se usa hoy.
@@ -356,7 +356,7 @@ class Banxico:
 
         Examples
         --------
-        >>> import siebanxico as sie
+        >>> import banxicolab as sie
         >>> sie.panel(["inpc", "fix", "tasa_objetivo"], "2015-01-01")   # doctest: +SKIP
         """
         from .transformaciones import a_mensual, frecuencia
@@ -486,7 +486,7 @@ class Banxico:
         """Tabla de inflación calculada a partir del índice de precios.
 
         Descarga 13 meses extra hacia atrás para que la variación anual exista
-        desde ``inicio``. Ver :func:`siebanxico.inflacion` para las columnas.
+        desde ``inicio``. Ver :func:`banxicolab.inflacion` para las columnas.
         """
         from .precios import inflacion as _tabla
 
@@ -501,7 +501,7 @@ class Banxico:
 
         Descarga el vector de precios de Banxico, calcula el rendimiento a
         vencimiento de cada título y los compara. Ver
-        :func:`siebanxico.inflacion_implicita` para la interpretación.
+        :func:`banxicolab.inflacion_implicita` para la interpretación.
 
         Parameters
         ----------

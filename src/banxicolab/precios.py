@@ -28,7 +28,7 @@ def inflacion(indice: pd.Series) -> pd.DataFrame:
 
     Examples
     --------
-    >>> import siebanxico as sie
+    >>> import banxicolab as sie
     >>> sie.inflacion(sie.serie("inpc", "2020-01-01")).tail()   # doctest: +SKIP
     """
     s = indice.dropna().sort_index()
@@ -79,7 +79,7 @@ def impulso(indice: pd.Series, meses: int = 3, *, ajustar: bool = True) -> pd.Se
     meses : int
         Tamaño de la ventana (3 o 6 son los habituales).
     ajustar : bool
-        Desestacionaliza antes con :func:`siebanxico.desestacionalizar`
+        Desestacionaliza antes con :func:`banxicolab.desestacionalizar`
         (requiere ``statsmodels``). Sin ajuste, el resultado refleja sobre todo
         el calendario.
 

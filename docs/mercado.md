@@ -14,7 +14,7 @@ $$\pi^{impl} = \frac{1 + i}{1 + r} - 1$$
 ## En una línea
 
 ```python
-import siebanxico as sie
+import banxicolab as sie
 
 bmx = sie.Banxico()
 bei = bmx.inflacion_implicita(10, "2010-01-01")
