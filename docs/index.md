@@ -11,7 +11,7 @@ para analizar inflación, tipo de cambio y tasas.
 ## En un minuto
 
 ```bash
-pip install "banxicolab[analisis] @ git+https://github.com/AnaJZP/banxicolab.git"
+pip install "banxicolab[analisis]"
 banxicolab token               # guarda tu token una sola vez, sin mostrarlo
 ```
 

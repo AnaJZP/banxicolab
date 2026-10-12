@@ -1,5 +1,9 @@
 # banxicolab
 
+[![PyPI](https://img.shields.io/pypi/v/banxicolab)](https://pypi.org/project/banxicolab/)
+[![Pruebas](https://github.com/AnaJZP/banxicolab/actions/workflows/pruebas.yml/badge.svg)](https://github.com/AnaJZP/banxicolab/actions/workflows/pruebas.yml)
+[![Documentación](https://img.shields.io/badge/docs-anajzp.github.io-800020)](https://anajzp.github.io/banxicolab/)
+
 Series del **Sistema de Información Económica (SIE) de Banco de México** en un
 `DataFrame`, con el token fuera del código y las transformaciones habituales
 para analizar inflación, tipo de cambio y tasas.
@@ -15,10 +19,10 @@ sie.inflacion(df["inpc"]).tail()
 
 ## Instalación
 
-Se instala directamente desde GitHub (también en Google Colab, anteponiendo `!`):
+Se instala desde PyPI (también en Google Colab, anteponiendo `!`):
 
 ```bash
-pip install "banxicolab[analisis] @ git+https://github.com/AnaJZP/banxicolab.git"
+pip install "banxicolab[analisis]"
 ```
 
 Para desarrollar, clona el repositorio e instala en modo editable:
