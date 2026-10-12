@@ -10,50 +10,46 @@ para analizar inflación, tipo de cambio y tasas.
 
 > Librería **no oficial**. No está afiliada ni respaldada por Banco de México.
 
-```python
-import banxicolab as sie
+## Primeros pasos
 
-df = sie.descargar(["inpc", "fix", "tasa_objetivo"], inicio="2015-01-01")
-sie.inflacion(df["inpc"]).tail()
-```
+En este orden. Los tres primeros pasos se hacen una sola vez.
 
-## Instalación
-
-Se instala desde PyPI (también en Google Colab, anteponiendo `!`):
+**1. Instala** (en un notebook o en Colab, usa `%pip` en lugar de `pip`):
 
 ```bash
 pip install "banxicolab[analisis]"
 ```
 
-Para desarrollar, clona el repositorio e instala en modo editable:
+**2. Importa:**
 
-```bash
-pip install -e ".[dev]"
+```python
+import banxicolab as sie
 ```
 
-`[analisis]` agrega `statsmodels` (desestacionalización y prueba ADF) y `matplotlib`; sin ellos,
-todo lo demás funciona igual. Requiere Python ≥ 3.10 y pandas ≥ 2.2.
+**3. Configura tu token.** Es gratuito y se genera en
+<https://www.banxico.org.mx/SieAPIRest/service/v1/token>. Guárdalo con:
 
-## El token, sin exponerlo
-
-El token gratuito se genera en
-<https://www.banxico.org.mx/SieAPIRest/service/v1/token>. Guárdalo **una sola vez**:
-
-```bash
-banxicolab token
+```python
+sie.guardar_token()
 ```
 
-Se pide sin mostrarlo en pantalla y queda en un archivo que solo tu usuario
-puede leer. A partir de ahí ningún notebook ni script necesita contenerlo. La
-librería lo busca en este orden:
+Pégalo cuando te lo pida (no se muestra en pantalla). La librería lo comprueba
+con Banxico y lo guarda en un archivo privado; no hay que volver a escribirlo
+ni ponerlo en el código. En Google Colab conviene usar los *Secrets*: ver
+[Token](https://anajzp.github.io/banxicolab/token/).
 
-1. variable de entorno `BANXICO_TOKEN` (o `BMX_TOKEN`),
-2. *Secrets* de Google Colab con ese mismo nombre,
-3. el archivo guardado con `banxicolab token`,
-4. si nada de lo anterior existe, lo pregunta con `getpass`.
+**4. Descarga y analiza:**
 
-Además, el token viaja en un encabezado HTTP y no en la URL, así que no aparece
-en mensajes de error, y `repr(cliente)` solo muestra los últimos 4 caracteres.
+```python
+datos = sie.panel(["inpc", "fix", "tasa_objetivo"], inicio="2015-01-01")
+sie.inflacion(datos["inpc"]).tail()
+```
+
+La guía completa, con la solución a los errores más comunes, está en
+**<https://anajzp.github.io/banxicolab/>**.
+
+`[analisis]` agrega `statsmodels` y `matplotlib`; sin ellos todo lo demás
+funciona igual. Requiere Python ≥ 3.10 y pandas ≥ 2.2.
 
 ## Descargar
 

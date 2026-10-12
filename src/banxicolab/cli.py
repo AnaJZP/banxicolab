@@ -55,7 +55,7 @@ def main(argv: list[str] | None = None) -> int:
                 print("Token eliminado." if borrar_token() else "No había token guardado.")
             else:
                 guardar_token()
-                print(f"Token guardado en {ruta_token()} (solo legible por tu usuario).")
+                print(f"Quedó en {ruta_token()} (solo legible por tu usuario).")
         elif args.comando == "catalogo":
             print(catalogo(args.tema).to_string())
         elif args.comando == "buscar":

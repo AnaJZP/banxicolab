@@ -1,5 +1,15 @@
 # Cambios
 
+## 0.3.1 — 2026-10-12
+
+- `guardar_token()` comprueba el token con Banxico antes de guardarlo y confirma el resultado.
+- Mensajes de error más claros: qué hacer cuando falta el token, cuántos caracteres llegaron si
+  está incompleto y de dónde salió el token que Banxico rechazó.
+- Un token rechazado ya no se queda en memoria: al corregirlo no hace falta reiniciar.
+- Se toleran comillas y espacios al pegar el token.
+- `python -m banxicolab` como alternativa cuando el comando no está en el PATH.
+- Documentación: página de inicio reescrita como guía paso a paso.
+
 ## 0.3.0 — 2026-10-12
 
 Primera versión en PyPI. El paquete se llama `banxicolab` (antes `siebanxico`, nombre que PyPI

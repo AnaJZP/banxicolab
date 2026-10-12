@@ -49,6 +49,9 @@ markdown_extensions:
   - tables
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.tabbed: { alternate_style: true }
+  - pymdownx.details
+  - md_in_html
   - pymdownx.arithmatex: { generic: true }
   - toc: { permalink: true }
 extra_javascript:

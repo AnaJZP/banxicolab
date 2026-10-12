@@ -38,6 +38,7 @@ def entorno_limpio(monkeypatch, tmp_path):
     monkeypatch.setenv("XDG_CONFIG_HOME", str(tmp_path))
     monkeypatch.setenv("APPDATA", str(tmp_path))
     monkeypatch.setattr("time.sleep", lambda s: None)
+    monkeypatch.setattr("banxicolab.token._verificar", lambda token: True)
 
 
 @pytest.fixture

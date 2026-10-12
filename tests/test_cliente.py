@@ -292,3 +292,23 @@ def test_el_readme_lista_todo_el_catalogo():
     readme = (Path(__file__).parents[1] / "README.md").read_text(encoding="utf-8")
     for alias, entrada in sie.CATALOGO.items():
         assert f"| `{alias}` | `{entrada.id}` |" in readme, alias
+
+
+def test_token_rechazado_dice_de_donde_salio_y_no_se_queda_pegado(monkeypatch):
+    malo, bueno = "b" * 64, "c" * 64
+
+    def responder(url, p):
+        return Respuesta({"error": {"mensaje": "Token inválido", "detalle": "x"}}, 400)
+
+    sesion = SesionFalsa(responder)
+    monkeypatch.setenv("BANXICO_TOKEN", malo)
+    bmx_ = sie.Banxico(sesion=sesion)
+    with pytest.raises(sie.TokenInvalido, match="variable de entorno BANXICO_TOKEN") as info:
+        bmx_.descargar("inpc")
+    assert malo not in str(info.value) and "guardar_token" in str(info.value)
+
+    # Al corregirlo, el mismo cliente toma el nuevo sin reiniciar la sesión
+    monkeypatch.setenv("BANXICO_TOKEN", bueno)
+    sesion.responder = lambda url, p: bmx(serie_json("SP1", [("01/01/2020", "105.9")]))
+    assert len(bmx_.descargar("inpc")) == 1
+    assert sesion.llamadas[-1]["headers"]["Bmx-Token"] == bueno

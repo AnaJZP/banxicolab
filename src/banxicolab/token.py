@@ -22,7 +22,7 @@ from .errores import TokenInvalido, TokenNoEncontrado
 VARIABLES_DE_ENTORNO = ("BANXICO_TOKEN", "BMX_TOKEN")
 URL_TOKEN = "https://www.banxico.org.mx/SieAPIRest/service/v1/token"
 
-_FORMATO = re.compile(r"^[0-9A-Za-z]{16,128}$")
+_FORMATO = re.compile(r"^[0-9A-Za-z]{64}$")
 
 
 def ruta_token() -> Path:
@@ -40,11 +40,12 @@ def enmascarar(token: str) -> str:
 
 
 def _validar(token: str) -> str:
-    token = token.strip()
+    # Al copiar y pegar es fácil arrastrar espacios, saltos de línea o comillas
+    token = token.strip().strip("'\"").strip()
     if not _FORMATO.match(token):
         raise TokenInvalido(
-            "El token no tiene el formato esperado (solo letras y números, sin espacios). "
-            f"Puedes generar uno en {URL_TOKEN}"
+            f"El token del SIE tiene 64 letras y números, sin espacios; recibí {len(token)} "
+            f"caracteres. Cópialo de nuevo, completo. Se genera en {URL_TOKEN}"
         )
     return token
 
@@ -79,6 +80,44 @@ def _es_interactivo() -> bool:
     return bool(sys.stdin and sys.stdin.isatty())
 
 
+_AYUDA = (
+    "Para configurarlo, ejecuta una sola vez en Python:\n\n"
+    "    import banxicolab as sie\n"
+    "    sie.guardar_token()\n\n"
+    "Te lo pedirá sin mostrarlo en pantalla y lo guardará para las siguientes sesiones.\n"
+    f"Si aún no tienes token, se genera gratis en {URL_TOKEN}"
+)
+
+
+def _preguntar() -> str:
+    try:
+        return getpass("Pega tu token del SIE (no se mostrará en pantalla): ")
+    except (EOFError, KeyboardInterrupt):
+        raise
+    except Exception as error:  # p. ej. un notebook que se ejecuta sin nadie que responda
+        raise TokenNoEncontrado(
+            "No hay token del SIE configurado y este entorno no permite preguntarlo.\n" + _AYUDA
+        ) from error
+
+
+def _resolver(token: str | None = None, *, preguntar: bool = True) -> tuple[str, str]:
+    """Devuelve ``(token, de dónde salió)``; lo segundo sirve para explicar errores."""
+    if token:
+        return _validar(token), "argumento token="
+    for nombre in VARIABLES_DE_ENTORNO:
+        if os.environ.get(nombre):
+            return _validar(os.environ[nombre]), f"variable de entorno {nombre}"
+    de_colab = _desde_colab()
+    if de_colab:
+        return _validar(de_colab), "Secrets de Colab"
+    de_archivo = _desde_archivo()
+    if de_archivo:
+        return _validar(de_archivo), f"archivo {ruta_token()}"
+    if preguntar and _es_interactivo():
+        return _validar(_preguntar()), "lo que escribiste"
+    raise TokenNoEncontrado("No hay token del SIE configurado.\n" + _AYUDA)
+
+
 def obtener_token(token: str | None = None, *, preguntar: bool = True) -> str:
     """Resuelve el token siguiendo el orden descrito en el módulo.
 
@@ -97,39 +136,58 @@ def obtener_token(token: str | None = None, *, preguntar: bool = True) -> str:
     TokenInvalido
         Si el token encontrado tiene un formato imposible.
     """
-    if token:
-        return _validar(token)
-    for nombre in VARIABLES_DE_ENTORNO:
-        if os.environ.get(nombre):
-            return _validar(os.environ[nombre])
-    encontrado = _desde_colab() or _desde_archivo()
-    if encontrado:
-        return _validar(encontrado)
-    if preguntar and _es_interactivo():
-        return _validar(getpass("Pega tu token del SIE (no se mostrará en pantalla): "))
-    raise TokenNoEncontrado(
-        "No encontré un token del SIE. Opciones:\n"
-        "  • define la variable de entorno BANXICO_TOKEN,\n"
-        "  • ejecuta `banxicolab token` (o banxicolab.guardar_token()) una sola vez,\n"
-        "  • en Colab, agrégalo en Secrets con el nombre BANXICO_TOKEN.\n"
-        f"Si aún no tienes uno, se genera gratis en {URL_TOKEN}"
-    )
+    return _resolver(token, preguntar=preguntar)[0]
 
 
-def guardar_token(token: str | None = None) -> Path:
-    """Guarda el token en un archivo local que solo tu usuario puede leer.
+def _verificar(token: str) -> bool:
+    """Hace una consulta mínima al SIE. ``False`` si no hubo conexión para comprobarlo."""
+    from .cliente import Banxico
+    from .errores import ErrorDeConexion
 
-    Si no se pasa ``token`` se pide con ``getpass``, de modo que nunca queda
-    en el historial de la terminal ni en la celda del notebook.
+    try:
+        Banxico(token, reintentos=1, cache=False).oportuno("SF43718")
+    except ErrorDeConexion:
+        return False
+    except TokenInvalido:
+        raise TokenInvalido(
+            "Banxico rechazó ese token, así que no se guardó. Cópialo de nuevo, completo, "
+            f"o genera otro en {URL_TOKEN}"
+        ) from None
+    return True
+
+
+def guardar_token(token: str | None = None, *, verificar: bool = True) -> Path:
+    """Configura el token: lo pide, lo comprueba con Banxico y lo guarda.
+
+    Es el paso que se hace **una sola vez** por computadora. El token queda en
+    un archivo que solo tu usuario puede leer, y a partir de ahí la librería lo
+    encuentra sola.
+
+    Parameters
+    ----------
+    token : str, opcional
+        Si se omite (lo recomendable) se pide con ``getpass``, de modo que
+        nunca queda escrito en la celda del notebook ni en el historial.
+    verificar : bool
+        Hace una consulta de prueba antes de guardar. Si Banxico rechaza el
+        token no se guarda nada y se lanza :class:`~banxicolab.TokenInvalido`.
 
     Returns
     -------
     pathlib.Path
         Ruta del archivo escrito.
+
+    Examples
+    --------
+    >>> import banxicolab as sie
+    >>> sie.guardar_token()                       # doctest: +SKIP
+    Pega tu token del SIE (no se mostrará en pantalla): ········
+    Token verificado con Banxico y guardado. Ya puedes descargar series.
     """
     if token is None:
-        token = getpass("Pega tu token del SIE (no se mostrará en pantalla): ")
+        token = _preguntar()
     token = _validar(token)
+    verificado = _verificar(token) if verificar else None
     ruta = ruta_token()
     ruta.parent.mkdir(parents=True, exist_ok=True)
     # Se crea ya con permisos 600 para que el token nunca sea legible por otros
@@ -137,6 +195,10 @@ def guardar_token(token: str | None = None) -> Path:
     with os.fdopen(descriptor, "w", encoding="utf-8") as archivo:
         archivo.write(token + "\n")
     os.chmod(ruta, 0o600)
+    if verificado:
+        print("Token verificado con Banxico y guardado. Ya puedes descargar series.")
+    elif verificado is False:
+        print("Token guardado. No hubo conexión para verificarlo con Banxico.")
     return ruta
 
 

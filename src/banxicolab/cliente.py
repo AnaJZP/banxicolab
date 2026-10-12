@@ -21,7 +21,8 @@ from .errores import (
     SinDatos,
     TokenInvalido,
 )
-from .token import enmascarar, obtener_token
+from .token import _resolver as _resolver_token
+from .token import enmascarar
 
 URL_BASE = "https://www.banxico.org.mx/SieAPIRest/service/v1"
 MAX_SERIES_POR_CONSULTA = 20  # límite documentado por Banxico
@@ -118,6 +119,7 @@ class Banxico:
     ):
         self._token_explicito = token
         self._token: str | None = None
+        self._origen_token = ""
         self.timeout = timeout
         self.reintentos = reintentos
         self.espera_maxima = espera_maxima
@@ -145,7 +147,7 @@ class Banxico:
         encabezados = {"Accept": "application/json"}
         if con_token:
             if self._token is None:
-                self._token = obtener_token(self._token_explicito)
+                self._token, self._origen_token = _resolver_token(self._token_explicito)
             encabezados["Bmx-Token"] = self._token
 
         espero_limite = False
@@ -186,7 +188,15 @@ class Banxico:
                     espero_limite = True
                     time.sleep(float(segundos) + 1)
                     continue
-                self._lanzar(error)
+                try:
+                    self._lanzar(error)
+                except TokenInvalido as rechazo:
+                    origen = self._origen_token
+                    self._token = None  # para que un token corregido se tome sin reiniciar
+                    raise TokenInvalido(
+                        f"Banxico rechazó el token (origen: {origen}). Revisa que esté "
+                        "completo y guarda uno nuevo con banxicolab.guardar_token()."
+                    ) from rechazo
             if resp.status_code >= 400:
                 raise BanxicoError(f"El SIE respondió HTTP {resp.status_code}.")
             break

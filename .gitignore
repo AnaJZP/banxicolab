@@ -14,3 +14,6 @@ site/
 
 # Versión previa del seminario, anterior a la librería (la vigente está en examples/)
 /Transformaciones_Variables_Banxico.ipynb
+
+# Configuración local del asistente
+.claude/
