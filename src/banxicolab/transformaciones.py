@@ -311,8 +311,6 @@ def desestacionalizar(
     usan X-13ARIMA-SEATS con efectos de calendario; si existe la serie
     desestacionalizada oficial (p. ej. ``"igae_desestacionalizado"``), úsala.
 
-    Requiere ``statsmodels`` (``pip install statsmodels``).
-
     Parameters
     ----------
     modelo : {"multiplicativo", "aditivo"}

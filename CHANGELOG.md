@@ -1,5 +1,10 @@
 # Cambios
 
+## 0.3.2 — 2026-10-12
+
+- La instalación es simplemente `pip install banxicolab`: `statsmodels` y `matplotlib` pasan a
+  instalarse siempre. `pip install "banxicolab[analisis]"` sigue funcionando.
+
 ## 0.3.1 — 2026-10-12
 
 - `guardar_token()` comprueba el token con Banxico antes de guardarlo y confirma el resultado.

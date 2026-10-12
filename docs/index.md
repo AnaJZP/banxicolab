@@ -20,18 +20,17 @@ vez por computadora; después, basta con importar y descargar.
     En una celda del notebook:
 
     ```python
-    %pip install "banxicolab[analisis]"
+    %pip install banxicolab
     ```
 
 === "Terminal"
 
     ```bash
-    pip install "banxicolab[analisis]"
+    pip install banxicolab
     ```
 
-Las comillas son necesarias. Requiere Python 3.10 o posterior. `[analisis]`
-incluye `statsmodels` y `matplotlib`, que usan las funciones de pronóstico,
-estacionalidad y las gráficas de los ejemplos.
+Requiere Python 3.10 o posterior. Con eso se instala todo lo necesario,
+incluidas las librerías que usan los pronósticos y las gráficas.
 
 ### 2. Impórtala
 
@@ -110,9 +109,9 @@ Con las series descargadas, cada análisis es una línea:
 ```python
 inpc = sie.serie("inpc", "2015-01-01")
 
-sie.inflacion(inpc).tail()                 # mensual, anual, acumulada y anualizada
-sie.pronosticar_inflacion(inpc, 12)        # pronóstico a 12 meses con intervalo
-sie.Banxico().inflacion_implicita(10)      # la que descuentan Bonos M y Udibonos
+sie.inflacion(inpc).tail()  # mensual, anual, acumulada y anualizada
+sie.pronosticar_inflacion(inpc, 12)  # pronóstico a 12 meses con intervalo
+sie.Banxico().inflacion_implicita(10)  # la que descuentan Bonos M y Udibonos
 ```
 
 <div class="grid cards" markdown>
@@ -151,7 +150,6 @@ sie.Banxico().inflacion_implicita(10)      # la que descuentan Bonos M y Udibono
 | Mensaje | Causa | Solución |
 |---|---|---|
 | `ModuleNotFoundError: No module named 'banxicolab'` | Se instaló en otro Python, o falta reiniciar | En el notebook instala con `%pip` (no con `!pip`) y reinicia el kernel |
-| `zsh: no matches found: banxicolab[analisis]` | Faltan las comillas | `pip install "banxicolab[analisis]"` |
 | `TokenNoEncontrado` | Aún no configuras el token | Ejecuta `sie.guardar_token()` (paso 3) |
 | `TokenInvalido: … recibí 40 caracteres` | Token copiado incompleto | Cópialo de nuevo; son 64 caracteres |
 | `TokenInvalido: Banxico rechazó el token` | Token equivocado o dado de baja | Genera otro y repite el paso 3. El mensaje dice de dónde se tomó el token rechazado |

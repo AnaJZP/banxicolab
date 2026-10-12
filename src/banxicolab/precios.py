@@ -79,8 +79,8 @@ def impulso(indice: pd.Series, meses: int = 3, *, ajustar: bool = True) -> pd.Se
     meses : int
         Tamaño de la ventana (3 o 6 son los habituales).
     ajustar : bool
-        Desestacionaliza antes con :func:`banxicolab.desestacionalizar`
-        (requiere ``statsmodels``). Sin ajuste, el resultado refleja sobre todo
+        Desestacionaliza antes con :func:`banxicolab.desestacionalizar`.
+        Sin ajuste, el resultado refleja sobre todo
         el calendario.
 
     Returns

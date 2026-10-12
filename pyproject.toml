@@ -26,12 +26,15 @@ dependencies = [
     "requests>=2.28",
     "pandas>=2.2",
     "numpy>=1.24",
+    "statsmodels>=0.14",  # desestacionalización, prueba ADF y pronósticos
+    "matplotlib>=3.7",  # gráficas de los ejemplos
 ]
 
 [project.optional-dependencies]
-# Desestacionalización, pruebas de raíz unitaria y gráficas
-analisis = ["statsmodels>=0.14", "matplotlib>=3.7"]
-dev = ["pytest>=8", "ruff>=0.6", "statsmodels>=0.14", "matplotlib>=3.7"]
+# Se conserva vacío para que `pip install "banxicolab[analisis]"`, la forma de
+# instalar hasta la 0.3.1, siga funcionando.
+analisis = []
+dev = ["pytest>=8", "ruff>=0.6"]
 docs = ["mkdocs>=1.6,<2", "mkdocs-material>=9.5", "mkdocstrings[python]>=0.26"]
 
 [project.urls]

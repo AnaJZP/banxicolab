@@ -1,7 +1,5 @@
 # Tendencia y pronósticos
 
-Requiere `statsmodels`, incluido en el extra `[analisis]` de la instalación.
-
 ## Medidas de tendencia
 
 La inflación anual compara con hace doce meses, así que tarda en mostrar los

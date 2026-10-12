@@ -62,8 +62,6 @@ def prueba_adf(
     Acepta un diccionario ``{nombre: serie}``, ideal para comparar la misma
     variable bajo distintas transformaciones. H0: la serie tiene raíz unitaria;
     se rechaza (``estacionaria = True``) cuando ``p_valor < alfa``.
-
-    Requiere ``statsmodels`` (``pip install statsmodels``).
     """
     from ._opcionales import statsmodels_tsa
 

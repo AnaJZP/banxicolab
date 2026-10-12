@@ -2,7 +2,6 @@
 
 Son modelos univariados sencillos: sirven como punto de comparación, no como
 sustituto de un modelo estructural ni del juicio de quien analiza.
-Requieren ``statsmodels`` (``pip install statsmodels``).
 """
 
 from __future__ import annotations

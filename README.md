@@ -17,7 +17,7 @@ En este orden. Los tres primeros pasos se hacen una sola vez.
 **1. Instala** (en un notebook o en Colab, usa `%pip` en lugar de `pip`):
 
 ```bash
-pip install "banxicolab[analisis]"
+pip install banxicolab
 ```
 
 **2. Importa:**
@@ -48,8 +48,8 @@ sie.inflacion(datos["inpc"]).tail()
 La guía completa, con la solución a los errores más comunes, está en
 **<https://anajzp.github.io/banxicolab/>**.
 
-`[analisis]` agrega `statsmodels` y `matplotlib`; sin ellos todo lo demás
-funciona igual. Requiere Python ≥ 3.10 y pandas ≥ 2.2.
+Requiere Python ≥ 3.10. La instalación incluye lo necesario para todos los
+análisis (`pandas`, `statsmodels`, `matplotlib`).
 
 ## Descargar
 
