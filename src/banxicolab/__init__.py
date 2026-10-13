@@ -56,7 +56,7 @@ from .transformaciones import (
     variacion_anual,
 )
 
-__version__ = "0.3.2"
+__version__ = "0.3.3"
 
 __all__ = [
     "TEMAS",

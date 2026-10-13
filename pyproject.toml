@@ -31,9 +31,6 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# Se conserva vacío para que `pip install "banxicolab[analisis]"`, la forma de
-# instalar hasta la 0.3.1, siga funcionando.
-analisis = []
 dev = ["pytest>=8", "ruff>=0.6"]
 docs = ["mkdocs>=1.6,<2", "mkdocs-material>=9.5", "mkdocstrings[python]>=0.26"]
 

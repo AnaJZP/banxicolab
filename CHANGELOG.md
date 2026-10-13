@@ -1,9 +1,13 @@
 # Cambios
 
+## 0.3.3 — 2026-10-12
+
+- Se elimina el extra `[analisis]`, que ya no hacía falta.
+
 ## 0.3.2 — 2026-10-12
 
 - La instalación es simplemente `pip install banxicolab`: `statsmodels` y `matplotlib` pasan a
-  instalarse siempre. `pip install "banxicolab[analisis]"` sigue funcionando.
+  instalarse siempre.
 
 ## 0.3.1 — 2026-10-12
 
