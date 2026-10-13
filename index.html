@@ -1,0 +1,1047 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Series del SIE de Banco de México listas para analizar en Python">
+      
+      
+        <meta name="author" content="Ana Lorena Jiménez Preciado">
+      
+      
+        <link rel="canonical" href="https://anajzp.github.io/banxicolab/">
+      
+      
+      
+        <link rel="next" href="token/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>banxicolab</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="estilo.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#banxicolab" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="." title="banxicolab" class="md-header__button md-logo" aria-label="banxicolab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            banxicolab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Inicio
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AnaJZP/banxicolab" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="banxicolab" class="md-nav__button md-logo" aria-label="banxicolab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    banxicolab
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AnaJZP/banxicolab" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#primeros-pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primeros pasos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primeros pasos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-instala-la-libreria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Instala la librería
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-importala" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Impórtala
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configura-tu-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configura tu token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-descarga-tus-primeras-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Descarga tus primeras series
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ahora-si-a-analizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ahora sí, a analizar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#si-algo-falla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Si algo falla
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-resuelve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué resuelve
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Token
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="descarga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descargar series
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="transformaciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformaciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inflacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inflación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pronosticos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tendencia y pronósticos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mercado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendimientos e inflación implícita
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="catalogo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catálogo de alias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="referencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#primeros-pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primeros pasos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primeros pasos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-instala-la-libreria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Instala la librería
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-importala" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Impórtala
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configura-tu-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configura tu token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-descarga-tus-primeras-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Descarga tus primeras series
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ahora-si-a-analizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ahora sí, a analizar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#si-algo-falla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Si algo falla
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-resuelve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué resuelve
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="banxicolab">banxicolab<a class="headerlink" href="#banxicolab" title="Permanent link">&para;</a></h1>
+<p>Series del <strong>Sistema de Información Económica (SIE) de Banco de México</strong>
+directamente en un <code>DataFrame</code> de pandas, con herramientas para analizar
+inflación, tipo de cambio y tasas de interés.</p>
+<div class="admonition note">
+<p class="admonition-title">Librería no oficial</p>
+<p>No está afiliada ni respaldada por Banco de México. Los datos son de Banxico
+y están sujetos a sus términos de uso.</p>
+</div>
+<h2 id="primeros-pasos">Primeros pasos<a class="headerlink" href="#primeros-pasos" title="Permanent link">&para;</a></h2>
+<p>Sigue los cuatro pasos <strong>en este orden</strong>. Los tres primeros se hacen una sola
+vez por computadora; después, basta con importar y descargar.</p>
+<h3 id="1-instala-la-libreria">1. Instala la librería<a class="headerlink" href="#1-instala-la-libreria" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Jupyter o Google Colab</label><label for="__tabbed_1_2">Terminal</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>En una celda del notebook:</p>
+<div class="highlight"><pre><span></span><code><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">banxicolab</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>banxicolab
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Requiere Python 3.10 o posterior. Con eso se instala todo lo necesario,
+incluidas las librerías que usan los pronósticos y las gráficas.</p>
+<h3 id="2-importala">2. Impórtala<a class="headerlink" href="#2-importala" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">banxicolab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sie</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sie</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</code></pre></div>
+<p>Si aparece el número de versión, la instalación quedó bien. Si sale
+<code>ModuleNotFoundError</code>, ve a <a href="#si-algo-falla">Si algo falla</a>.</p>
+<h3 id="3-configura-tu-token">3. Configura tu token<a class="headerlink" href="#3-configura-tu-token" title="Permanent link">&para;</a></h3>
+<p>La API de Banxico pide un token personal y gratuito de 64 caracteres.</p>
+<p><strong>a) Consíguelo.</strong> Entra a
+<a href="https://www.banxico.org.mx/SieAPIRest/service/v1/token">https://www.banxico.org.mx/SieAPIRest/service/v1/token</a>, sigue las
+instrucciones de la página y copia el token completo.</p>
+<p><strong>b) Guárdalo.</strong> Ejecuta:</p>
+<div class="highlight"><pre><span></span><code><span class="n">sie</span><span class="o">.</span><span class="n">guardar_token</span><span class="p">()</span>
+</code></pre></div>
+<p>Aparecerá un cuadro para escribir (en VS Code sale arriba, al centro de la
+ventana). Pega el token y presiona Enter; no se muestra en pantalla mientras lo
+pegas. Debes ver:</p>
+<div class="highlight"><pre><span></span><code>Pega tu token del SIE (no se mostrará en pantalla): ········
+Token verificado con Banxico y guardado. Ya puedes descargar series.
+</code></pre></div>
+<p>La librería comprueba el token con Banxico antes de guardarlo. Si lo copiaste
+incompleto o Banxico lo rechaza, te lo dice ahí mismo y no guarda nada: vuelve
+a copiarlo y repite el paso.</p>
+<div class="admonition tip">
+<p class="admonition-title">Solo una vez</p>
+<p>El token queda en un archivo privado de tu computadora y la librería lo
+encuentra sola en adelante. No vuelvas a ejecutar <code>guardar_token()</code> ni
+escribas el token dentro de tu código: así puedes compartir tus notebooks
+sin exponerlo.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">En Google Colab</p>
+<p>Colab borra los archivos al cerrar la sesión, así que habría que repetir
+este paso cada vez. Para evitarlo, guarda el token en los <em>Secrets</em> de
+Colab; está explicado en <a href="token/#en-google-colab">Token</a>.</p>
+</div>
+<h3 id="4-descarga-tus-primeras-series">4. Descarga tus primeras series<a class="headerlink" href="#4-descarga-tus-primeras-series" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">datos</span> <span class="o">=</span> <span class="n">sie</span><span class="o">.</span><span class="n">panel</span><span class="p">([</span><span class="s2">"inpc"</span><span class="p">,</span> <span class="s2">"fix"</span><span class="p">,</span> <span class="s2">"tasa_objetivo"</span><span class="p">],</span> <span class="n">inicio</span><span class="o">=</span><span class="s2">"2026-04-01"</span><span class="p">,</span> <span class="n">fin</span><span class="o">=</span><span class="s2">"2026-08-31"</span><span class="p">)</span>
+<span class="n">datos</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>               inpc     fix  tasa_objetivo
+fecha
+2026-04-01  145.831  17.512          6.750
+2026-05-01  145.527  17.350          6.556
+2026-06-01  145.131  17.469          6.500
+2026-07-01  145.169  17.329          6.500
+2026-08-01  145.462  17.015          6.500
+</code></pre></div>
+<p>Si ves una tabla como esta, todo funciona. <code>panel</code> descargó el INPC (mensual),
+el tipo de cambio FIX y la tasa objetivo (diarios) y los dejó en frecuencia
+mensual.</p>
+<h2 id="ahora-si-a-analizar">Ahora sí, a analizar<a class="headerlink" href="#ahora-si-a-analizar" title="Permanent link">&para;</a></h2>
+<p>Con las series descargadas, cada análisis es una línea:</p>
+<div class="highlight"><pre><span></span><code><span class="n">inpc</span> <span class="o">=</span> <span class="n">sie</span><span class="o">.</span><span class="n">serie</span><span class="p">(</span><span class="s2">"inpc"</span><span class="p">,</span> <span class="s2">"2015-01-01"</span><span class="p">)</span>
+
+<span class="n">sie</span><span class="o">.</span><span class="n">inflacion</span><span class="p">(</span><span class="n">inpc</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>  <span class="c1"># mensual, anual, acumulada y anualizada</span>
+<span class="n">sie</span><span class="o">.</span><span class="n">pronosticar_inflacion</span><span class="p">(</span><span class="n">inpc</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>  <span class="c1"># pronóstico a 12 meses con intervalo</span>
+<span class="n">sie</span><span class="o">.</span><span class="n">Banxico</span><span class="p">()</span><span class="o">.</span><span class="n">inflacion_implicita</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># la que descuentan Bonos M y Udibonos</span>
+</code></pre></div>
+<div class="grid cards">
+<ul>
+<li>
+<p><strong><a href="descarga/">Descargar series</a></strong></p>
+<p>Por clave del SIE, por alias o un tema completo. Paneles mensuales, último
+dato y búsqueda de series.</p>
+</li>
+<li>
+<p><strong><a href="catalogo/">Catálogo</a></strong></p>
+<p>Las 35 series con nombre corto: <code>"inpc"</code>, <code>"fix"</code>, <code>"cetes_28"</code>,
+<code>"tasa_objetivo"</code>…</p>
+</li>
+<li>
+<p><strong><a href="transformaciones/">Transformaciones</a></strong></p>
+<p>Índices, variaciones, deflactar, tasa real, escalamientos y
+estacionalidad.</p>
+</li>
+<li>
+<p><strong><a href="inflacion/">Inflación</a></strong></p>
+<p>Un análisis completo, del índice a la tasa de interés real.</p>
+</li>
+<li>
+<p><strong><a href="pronosticos/">Tendencia y pronósticos</a></strong></p>
+<p>Impulso, persistencia y pronósticos SARIMA evaluados fuera de muestra.</p>
+</li>
+<li>
+<p><strong><a href="mercado/">Rendimientos e inflación implícita</a></strong></p>
+<p>Qué inflación descuentan los precios de los bonos del gobierno.</p>
+</li>
+</ul>
+</div>
+<h2 id="si-algo-falla">Si algo falla<a class="headerlink" href="#si-algo-falla" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Mensaje</th>
+<th>Causa</th>
+<th>Solución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ModuleNotFoundError: No module named 'banxicolab'</code></td>
+<td>Se instaló en otro Python, o falta reiniciar</td>
+<td>En el notebook instala con <code>%pip</code> (no con <code>!pip</code>) y reinicia el kernel</td>
+</tr>
+<tr>
+<td><code>TokenNoEncontrado</code></td>
+<td>Aún no configuras el token</td>
+<td>Ejecuta <code>sie.guardar_token()</code> (paso 3)</td>
+</tr>
+<tr>
+<td><code>TokenInvalido: … recibí 40 caracteres</code></td>
+<td>Token copiado incompleto</td>
+<td>Cópialo de nuevo; son 64 caracteres</td>
+</tr>
+<tr>
+<td><code>TokenInvalido: Banxico rechazó el token</code></td>
+<td>Token equivocado o dado de baja</td>
+<td>Genera otro y repite el paso 3. El mensaje dice de dónde se tomó el token rechazado</td>
+</tr>
+<tr>
+<td><code>SerieNoEncontrada</code></td>
+<td>Clave o alias mal escrito</td>
+<td>Revisa el <a href="catalogo/">catálogo</a> o usa <code>sie.buscar("texto")</code></td>
+</tr>
+<tr>
+<td><code>LimiteExcedido</code></td>
+<td>Más de 200 consultas en 5 minutos</td>
+<td>Espera los segundos que indica el mensaje</td>
+</tr>
+<tr>
+<td>No aparece dónde pegar el token</td>
+<td>El notebook se ejecuta sin interacción</td>
+<td>Ejecuta la celda a mano, o define la variable de entorno <code>BANXICO_TOKEN</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="que-resuelve">Qué resuelve<a class="headerlink" href="#que-resuelve" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Al usar la API directamente…</th>
+<th>Con la librería</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>El token termina pegado en el notebook</td>
+<td>Se guarda aparte y nunca aparece en el código, las URLs ni los errores</td>
+</tr>
+<tr>
+<td>Fechas <code>dd/mm/aaaa</code> que pandas puede leer al revés</td>
+<td>Se leen con formato explícito</td>
+</tr>
+<tr>
+<td><code>N/E</code> y comas de miles (<code>"193,045.50"</code>) que se vuelven <code>NaN</code> en silencio</td>
+<td>Limpieza numérica correcta</td>
+</tr>
+<tr>
+<td>Máximo 20 series por consulta</td>
+<td>La consulta se parte en lotes</td>
+</tr>
+<tr>
+<td>Límite de 200 consultas cada 5 minutos</td>
+<td>Caché en memoria y espera automática si el bloqueo es corto</td>
+</tr>
+<tr>
+<td>Series diarias y mensuales que no se alinean</td>
+<td><code>panel</code> las lleva a frecuencia mensual con la regla correcta</td>
+</tr>
+<tr>
+<td>Hay que memorizar <code>SF43718</code></td>
+<td>Alias (<code>"fix"</code>), temas y buscador de series</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.code.copy", "navigation.sections", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

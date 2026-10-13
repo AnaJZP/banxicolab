@@ -1,0 +1,5524 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Series del SIE de Banco de México listas para analizar en Python">
+      
+      
+        <meta name="author" content="Ana Lorena Jiménez Preciado">
+      
+      
+        <link rel="canonical" href="https://anajzp.github.io/banxicolab/referencia/">
+      
+      
+        <link rel="prev" href="../catalogo/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Referencia - banxicolab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../estilo.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#referencia" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="banxicolab" class="md-header__button md-logo" aria-label="banxicolab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            banxicolab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Referencia
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AnaJZP/banxicolab" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="banxicolab" class="md-nav__button md-logo" aria-label="banxicolab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    banxicolab
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AnaJZP/banxicolab" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Token
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../descarga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descargar series
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformaciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformaciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inflacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inflación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pronosticos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tendencia y pronósticos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mercado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rendimientos e inflación implícita
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../catalogo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catálogo de alias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cliente
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cliente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banxico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Banxico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.limpiar_cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        limpiar_cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.descargar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        descargar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        panel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.serie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        serie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.metadatos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadatos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.oportuno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        oportuno
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.buscar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        buscar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.inflacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.inflacion_implicita" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion_implicita
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Token">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.obtener_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        obtener_token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.guardar_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        guardar_token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.borrar_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        borrar_token
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catalogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catálogo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Catálogo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.catalogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        catalogo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frecuencia-y-diagnostico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frecuencia y diagnóstico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frecuencia y diagnóstico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.frecuencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        frecuencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.diagnostico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        diagnostico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="diagnostico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.diagnostico.diagnostico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        diagnostico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.diagnostico.prueba_adf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        prueba_adf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.a_mensual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a_mensual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.valor_en" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        valor_en
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#numeros-indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Números índice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Números índice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.indice_base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        indice_base
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.cambiar_base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cambiar_base
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.empalmar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        empalmar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasas-de-variacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasas de variación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasas de variación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.variacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variacion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.variacion_anual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variacion_anual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.anualizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        anualizar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inflacion-y-precios-constantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inflación y precios constantes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inflación y precios constantes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.inflacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.inflacion_entre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion_entre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.deflactar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        deflactar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.a_pesos_de" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a_pesos_de
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.tasa_real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tasa_real
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tendencia-y-pronosticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tendencia y pronósticos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tendencia y pronósticos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.impulso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        impulso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.persistencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        persistencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.pronosticar_inflacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pronosticar_inflacion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.evaluar_pronosticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        evaluar_pronosticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rendimientos-e-inflacion-implicita" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rendimientos e inflación implícita
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rendimientos e inflación implícita">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.rendimiento_bono" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rendimiento_bono
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.precio_bono" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        precio_bono
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.inflacion_implicita" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion_implicita
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.inflacion_implicita_forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion_implicita_forward
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cambio-de-unidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cambio de unidades
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cambio de unidades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.estandarizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        estandarizar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.min_max" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        min_max
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.escalar_robusto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        escalar_robusto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estacionalidad-y-estacionariedad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estacionalidad y estacionariedad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estacionalidad y estacionariedad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.desestacionalizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        desestacionalizar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.prueba_adf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        prueba_adf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excepciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Excepciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Excepciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        errores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.BanxicoError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BanxicoError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.TokenNoEncontrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TokenNoEncontrado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.TokenInvalido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TokenInvalido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.LimiteExcedido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LimiteExcedido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.SerieNoEncontrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SerieNoEncontrada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.SinDatos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SinDatos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.ErrorDeConexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ErrorDeConexion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cliente
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cliente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banxico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Banxico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.limpiar_cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        limpiar_cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.descargar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        descargar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        panel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.serie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        serie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.metadatos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadatos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.oportuno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        oportuno
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.buscar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        buscar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.inflacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.Banxico.inflacion_implicita" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion_implicita
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Token">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.obtener_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        obtener_token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.guardar_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        guardar_token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.borrar_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        borrar_token
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catalogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catálogo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Catálogo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.catalogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        catalogo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frecuencia-y-diagnostico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frecuencia y diagnóstico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frecuencia y diagnóstico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.frecuencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        frecuencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.diagnostico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        diagnostico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="diagnostico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.diagnostico.diagnostico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        diagnostico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.diagnostico.prueba_adf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        prueba_adf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.a_mensual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a_mensual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.valor_en" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        valor_en
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#numeros-indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Números índice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Números índice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.indice_base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        indice_base
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.cambiar_base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cambiar_base
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.empalmar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        empalmar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasas-de-variacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasas de variación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasas de variación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.variacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variacion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.variacion_anual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variacion_anual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.anualizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        anualizar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inflacion-y-precios-constantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inflación y precios constantes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inflación y precios constantes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.inflacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.inflacion_entre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion_entre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.deflactar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        deflactar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.a_pesos_de" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a_pesos_de
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.tasa_real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tasa_real
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tendencia-y-pronosticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tendencia y pronósticos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tendencia y pronósticos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.impulso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        impulso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.persistencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        persistencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.pronosticar_inflacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pronosticar_inflacion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.evaluar_pronosticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        evaluar_pronosticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rendimientos-e-inflacion-implicita" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rendimientos e inflación implícita
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rendimientos e inflación implícita">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.rendimiento_bono" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rendimiento_bono
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.precio_bono" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        precio_bono
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.inflacion_implicita" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion_implicita
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.inflacion_implicita_forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inflacion_implicita_forward
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cambio-de-unidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cambio de unidades
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cambio de unidades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.estandarizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        estandarizar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.min_max" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        min_max
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.escalar_robusto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        escalar_robusto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estacionalidad-y-estacionariedad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estacionalidad y estacionariedad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estacionalidad y estacionariedad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.desestacionalizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        desestacionalizar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.prueba_adf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        prueba_adf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excepciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Excepciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Excepciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        errores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.BanxicoError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BanxicoError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.TokenNoEncontrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TokenNoEncontrado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.TokenInvalido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TokenInvalido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.LimiteExcedido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LimiteExcedido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.SerieNoEncontrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SerieNoEncontrada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.SinDatos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SinDatos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banxicolab.errores.ErrorDeConexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ErrorDeConexion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="referencia">Referencia<a class="headerlink" href="#referencia" title="Permanent link">&para;</a></h1>
+<p>Todo se importa desde el paquete: <code>import banxicolab as sie</code>.</p>
+<h2 id="cliente">Cliente<a class="headerlink" href="#cliente" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="banxicolab.Banxico" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">Banxico</span>
+
+
+<a href="#banxicolab.Banxico" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents first">
+
+
+
+        <p>Cliente del SIE de Banco de México.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>token</code>
+            </td>
+            <td>
+                  <code>(<span title="str">str</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Token de consulta. Lo normal es <strong>no</strong> pasarlo y dejar que se resuelva
+desde el entorno; ver :func:<code>banxicolab.obtener_token</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Segundos de espera por petición.</p>
+              </div>
+            </td>
+            <td>
+                  <code>30</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>reintentos</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Reintentos ante fallas de red o errores 5xx (con espera creciente).</p>
+              </div>
+            </td>
+            <td>
+                  <code>3</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>cache</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Guarda en memoria las respuestas para no gastar consultas repitiendo la
+misma petición. Banxico recomienda expresamente cachear.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>espera_maxima</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Si se supera el límite de consultas y el desbloqueo ocurre en menos de
+estos segundos, se espera y se reintenta; si no, se lanza
+:class:<code>~banxicolab.LimiteExcedido</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>60</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>sesion</code>
+            </td>
+            <td>
+                  <code>(<span title="requests.Session">Session</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Sesión propia (proxies, certificados corporativos, pruebas).</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">banxicolab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sie</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bmx</span> <span class="o">=</span> <span class="n">sie</span><span class="o">.</span><span class="n">Banxico</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bmx</span><span class="o">.</span><span class="n">descargar</span><span class="p">([</span><span class="s2">"inpc"</span><span class="p">,</span> <span class="s2">"fix"</span><span class="p">],</span> <span class="n">inicio</span><span class="o">=</span><span class="s2">"2015-01-01"</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.Banxico.limpiar_cache" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">limpiar_cache</span>
+
+
+<a href="#banxicolab.Banxico.limpiar_cache" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">limpiar_cache</span><span class="p">()</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Olvida las respuestas guardadas (p. ej. tras una nueva publicación).</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.Banxico.descargar" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">descargar</span>
+
+
+<a href="#banxicolab.Banxico.descargar" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">descargar</span><span class="p">(</span><span class="n">series</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inicio</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">tema</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">incremento</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Descarga una o varias series y las devuelve alineadas por fecha.</p>
+<p>Hay tres formas de decir qué se quiere: por clave del SIE, por alias
+del catálogo o un tema completo.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>series</code>
+            </td>
+            <td>
+                  <code>str, lista o dict</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Identificadores del SIE (<code>"SF43718"</code>), alias del catálogo
+(<code>"fix"</code>) o un diccionario <code>{clave: nombre_de_columna}</code>. No hay
+límite de 20 series: la consulta se parte en lotes automáticamente.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>tema</code>
+            </td>
+            <td>
+                  <code>(<span title="str">str</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>En lugar de <code>series</code>, todas las del catálogo de un tema
+(<code>"tasas"</code>, <code>"tipo_de_cambio"</code>…); ver :func:<code>banxicolab.catalogo</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>inicio</code>
+            </td>
+            <td>
+                  <code>(<span title="fecha">fecha</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Cualquier cosa que entienda <code>pandas.Timestamp</code>. Si se omiten ambas
+se descarga la historia completa; si falta <code>fin</code> se usa hoy.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>fin</code>
+            </td>
+            <td>
+                  <code>(<span title="fecha">fecha</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Cualquier cosa que entienda <code>pandas.Timestamp</code>. Si se omiten ambas
+se descarga la historia completa; si falta <code>fin</code> se usa hoy.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>incremento</code>
+            </td>
+            <td>
+                  <code>(&#39;mensual&#39;, &#39;anual&#39;, &#39;acumulado&#39;)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Pide a Banxico la variación porcentual ya calculada en lugar del
+nivel: respecto a la observación anterior, al mismo periodo del año
+anterior, o al cierre del año anterior.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#34;mensual&#34;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>DatetimeIndex</code> llamado <code>fecha</code>, una columna por serie y valores
+<code>float</code> (<code>NaN</code> donde el SIE reporta <code>N/E</code>). Las fechas sin
+ningún dato se descartan. Los títulos oficiales quedan en
+<code>df.attrs["series"]</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SerieNoEncontrada (banxicolab.errores.SerieNoEncontrada)" href="#banxicolab.errores.SerieNoEncontrada">SerieNoEncontrada</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Si alguna clave no existe en el SIE.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="SinDatos (banxicolab.errores.SinDatos)" href="#banxicolab.errores.SinDatos">SinDatos</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Si ninguna serie tiene observaciones en el periodo.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.Banxico.panel" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">panel</span>
+
+
+<a href="#banxicolab.Banxico.panel" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">panel</span><span class="p">(</span><span class="n">series</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inicio</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">tema</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">como</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Panel <strong>mensual</strong> listo para analizar, aunque las series tengan frecuencias distintas.</p>
+<p>Descarga las series y lleva a frecuencia mensual las diarias, semanales
+y quincenales, cada una con la regla que le corresponde según el
+catálogo: último dato para precios y saldos, promedio para tasas, suma
+para flujos. Evita tener que descargar por grupos y agregar a mano.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>series</code>
+            </td>
+            <td>
+                  <code><span title="banxicolab.cliente.Series">Series</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Igual que en :meth:<code>descargar</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>inicio</code>
+            </td>
+            <td>
+                  <code><span title="banxicolab.cliente.Series">Series</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Igual que en :meth:<code>descargar</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>fin</code>
+            </td>
+            <td>
+                  <code><span title="banxicolab.cliente.Series">Series</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Igual que en :meth:<code>descargar</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>tema</code>
+            </td>
+            <td>
+                  <code><span title="banxicolab.cliente.Series">Series</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Igual que en :meth:<code>descargar</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>como</code>
+            </td>
+            <td>
+                  <code>(<span title="dict">dict</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>{columna: regla}</code> para cambiar la regla de alguna serie o fijar
+la de una clave que no está en el catálogo (por omisión,
+<code>"ultimo"</code>). Reglas: <code>"ultimo"</code>, <code>"promedio"</code>, <code>"suma"</code>,
+<code>"primero"</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Indexado al primer día de cada mes. La regla aplicada a cada columna
+queda en <code>df.attrs["agregacion"]</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">banxicolab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sie</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sie</span><span class="o">.</span><span class="n">panel</span><span class="p">([</span><span class="s2">"inpc"</span><span class="p">,</span> <span class="s2">"fix"</span><span class="p">,</span> <span class="s2">"tasa_objetivo"</span><span class="p">],</span> <span class="s2">"2015-01-01"</span><span class="p">)</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.Banxico.serie" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">serie</span>
+
+
+<a href="#banxicolab.Banxico.serie" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">serie</span><span class="p">(</span><span class="n">clave</span><span class="p">,</span> <span class="n">inicio</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">incremento</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Como :meth:<code>descargar</code>, pero para una sola serie y sin valores faltantes.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.Banxico.metadatos" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">metadatos</span>
+
+
+<a href="#banxicolab.Banxico.metadatos" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">metadatos</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Título, periodicidad, unidad y cobertura de cada serie.</p>
+<p>Conviene revisarlo <strong>antes</strong> de transformar: indica si la serie es un
+índice, una tasa o un saldo, y desde cuándo existe.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.Banxico.oportuno" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">oportuno</span>
+
+
+<a href="#banxicolab.Banxico.oportuno" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">oportuno</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Último dato publicado de cada serie (consulta barata: 80 por minuto).</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.Banxico.buscar" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">buscar</span>
+
+
+<a href="#banxicolab.Banxico.buscar" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">buscar</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">limite</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Busca series por texto en el catálogo público del SIE. No usa token.</p>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>Se apoya en el buscador de la página del catálogo, que no forma parte
+de la API documentada: funciona mejor con una o dos palabras
+(<code>"subyacente"</code>, <code>"cetes"</code>) y podría cambiar sin aviso.</p>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.Banxico.info" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">info</span>
+
+
+<a href="#banxicolab.Banxico.info" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">info</span><span class="p">(</span><span class="n">clave</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Ficha de una serie desde el catálogo público. No usa token ni gasta consultas.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.Banxico.inflacion" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">inflacion</span>
+
+
+<a href="#banxicolab.Banxico.inflacion" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">inflacion</span><span class="p">(</span><span class="n">inicio</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">indice</span><span class="o">=</span><span class="s1">'inpc'</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Tabla de inflación calculada a partir del índice de precios.</p>
+<p>Descarga 13 meses extra hacia atrás para que la variación anual exista
+desde <code>inicio</code>. Ver :func:<code>banxicolab.inflacion</code> para las columnas.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.Banxico.inflacion_implicita" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">inflacion_implicita</span>
+
+
+<a href="#banxicolab.Banxico.inflacion_implicita" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">inflacion_implicita</span><span class="p">(</span><span class="n">plazo</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">inicio</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fin</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Inflación implícita diaria en los precios de Bonos M y Udibonos.</p>
+<p>Descarga el vector de precios de Banxico, calcula el rendimiento a
+vencimiento de cada título y los compara. Ver
+:func:<code>banxicolab.inflacion_implicita</code> para la interpretación.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>plazo</code>
+            </td>
+            <td>
+                  <code>(3, 10, 20, 30)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Plazo de referencia en años.</p>
+              </div>
+            </td>
+            <td>
+                  <code>3</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>nominal</code> (Bono M) y <code>real</code> (Udibono) en % anual, <code>implicita</code>
+en %, y el plazo efectivo en años de cada título (<code>plazo_nominal</code>,
+<code>plazo_real</code>), que rara vez coinciden exactamente.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="token">Token<a class="headerlink" href="#token" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.obtener_token" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">obtener_token</span>
+
+
+<a href="#banxicolab.obtener_token" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">obtener_token</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">preguntar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Resuelve el token siguiendo el orden descrito en el módulo.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>token</code>
+            </td>
+            <td>
+                  <code>(<span title="str">str</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Token explícito. Si se da, solo se valida su formato.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>preguntar</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Si no se encuentra en ninguna fuente y la sesión es interactiva,
+pedirlo con <code>getpass</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="TokenNoEncontrado (banxicolab.errores.TokenNoEncontrado)" href="#banxicolab.errores.TokenNoEncontrado">TokenNoEncontrado</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Si no hay token y no se puede preguntar.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="TokenInvalido (banxicolab.errores.TokenInvalido)" href="#banxicolab.errores.TokenInvalido">TokenInvalido</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Si el token encontrado tiene un formato imposible.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.guardar_token" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">guardar_token</span>
+
+
+<a href="#banxicolab.guardar_token" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">guardar_token</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">verificar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Configura el token: lo pide, lo comprueba con Banxico y lo guarda.</p>
+<p>Es el paso que se hace <strong>una sola vez</strong> por computadora. El token queda en
+un archivo que solo tu usuario puede leer, y a partir de ahí la librería lo
+encuentra sola.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>token</code>
+            </td>
+            <td>
+                  <code>(<span title="str">str</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Si se omite (lo recomendable) se pide con <code>getpass</code>, de modo que
+nunca queda escrito en la celda del notebook ni en el historial.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>verificar</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Hace una consulta de prueba antes de guardar. Si Banxico rechaza el
+token no se guarda nada y se lanza :class:<code>~banxicolab.TokenInvalido</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pathlib.Path">Path</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Ruta del archivo escrito.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">banxicolab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sie</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sie</span><span class="o">.</span><span class="n">guardar_token</span><span class="p">()</span>
+<span class="go">Pega tu token del SIE (no se mostrará en pantalla): ········</span>
+<span class="go">Token verificado con Banxico y guardado. Ya puedes descargar series.</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.borrar_token" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">borrar_token</span>
+
+
+<a href="#banxicolab.borrar_token" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">borrar_token</span><span class="p">()</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Elimina el archivo creado por :func:<code>guardar_token</code>. Devuelve si existía.</p>
+
+
+    </div>
+
+</div><h2 id="catalogo">Catálogo<a class="headerlink" href="#catalogo" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.catalogo" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">catalogo</span>
+
+
+<a href="#banxicolab.catalogo" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">catalogo</span><span class="p">(</span><span class="n">tema</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">buscar</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Tabla con los alias disponibles.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>tema</code>
+            </td>
+            <td>
+                  <code>(<span title="str">str</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Filtra por tema: <code>"precios"</code>, <code>"expectativas"</code>, <code>"tipo_de_cambio"</code>,
+<code>"tasas"</code>, <code>"actividad"</code>, <code>"externo"</code> o <code>"dinero"</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>buscar</code>
+            </td>
+            <td>
+                  <code>(<span title="str">str</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Texto a buscar en el alias o la descripción, sin distinguir mayúsculas
+ni acentos (<code>buscar="inflacion"</code>).</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">catalogo</span><span class="p">(</span><span class="s2">"tipo_de_cambio"</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">['fix', 'fix_liquidacion', 'fix_promedio_mensual', 'euro']</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">catalogo</span><span class="p">(</span><span class="n">buscar</span><span class="o">=</span><span class="s2">"cetes"</span><span class="p">)[</span><span class="s2">"id"</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="go">['SF60633', 'SF60634']</span>
+</code></pre></div>
+
+
+    </div>
+
+</div><p>Las funciones <code>descargar</code>, <code>panel</code>, <code>serie</code>, <code>metadatos</code>, <code>oportuno</code>, <code>buscar</code> e
+<code>info</code> existen también a nivel de módulo (<code>sie.descargar(...)</code>), con los mismos
+parámetros que los métodos de <code>Banxico</code>.</p>
+<h2 id="frecuencia-y-diagnostico">Frecuencia y diagnóstico<a class="headerlink" href="#frecuencia-y-diagnostico" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.frecuencia" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">frecuencia</span>
+
+
+<a href="#banxicolab.frecuencia" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">frecuencia</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Frecuencia aproximada según la separación mediana entre observaciones.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>"Diaria"</code>, <code>"Semanal"</code>, <code>"Quincenal"</code>, <code>"Mensual"</code>,
+<code>"Trimestral"</code> o <code>"Anual"</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-module">
+
+
+
+<h3 id="banxicolab.diagnostico" class="doc doc-heading">
+            <span class="doc doc-object-name doc-module-name">diagnostico</span>
+
+
+<a href="#banxicolab.diagnostico" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents first">
+
+        <p>Conocer los datos antes de transformarlos, y verificar después.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.diagnostico.diagnostico" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">diagnostico</span>
+
+
+<a href="#banxicolab.diagnostico.diagnostico" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">diagnostico</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Resumen mínimo por serie: cobertura, frecuencia, faltantes y rango.</p>
+<p>La columna <code>razon_max_min</code> orienta sobre el logaritmo: si una serie
+positiva se multiplicó varias veces, su varianza casi seguro crece con el
+nivel.</p>
+<p><code>faltantes</code> cuenta los huecos entre la primera y la última observación de
+cada columna, así que diagnostica por separado las series de frecuencias
+distintas: al juntarlas en una tabla, los días sin dato mensual contarían
+como faltantes.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="banxicolab.diagnostico.prueba_adf" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">prueba_adf</span>
+
+
+<a href="#banxicolab.diagnostico.prueba_adf" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">prueba_adf</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">alfa</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Prueba Dickey–Fuller Aumentada para una o varias series.</p>
+<p>Acepta un diccionario <code>{nombre: serie}</code>, ideal para comparar la misma
+variable bajo distintas transformaciones. H0: la serie tiene raíz unitaria;
+se rechaza (<code>estacionaria = True</code>) cuando <code>p_valor &lt; alfa</code>.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.a_mensual" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">a_mensual</span>
+
+
+<a href="#banxicolab.a_mensual" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">a_mensual</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">como</span><span class="o">=</span><span class="s1">'ultimo'</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Lleva una serie de alta frecuencia a frecuencia mensual.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>datos</code>
+            </td>
+            <td>
+                  <code>Series o DataFrame</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Serie diaria o semanal.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>como</code>
+            </td>
+            <td>
+                  <code>(&#39;ultimo&#39;, &#39;promedio&#39;, &#39;suma&#39;, &#39;primero&#39;)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Regla de agregación. La elección no es neutral: <code>"ultimo"</code> para
+precios y saldos (tipo de cambio, reservas), <code>"promedio"</code> para tasas
+de interés, <code>"suma"</code> para flujos. Promediar un precio reduce
+artificialmente su volatilidad. Con un <code>DataFrame</code> puede darse un
+diccionario <code>{columna: regla}</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#34;ultimo&#34;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>Series o DataFrame</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Indexado al <strong>primer día de cada mes</strong>, igual que las series mensuales
+del SIE, para que se puedan unir sin desfases.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.valor_en" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">valor_en</span>
+
+
+<a href="#banxicolab.valor_en" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">valor_en</span><span class="p">(</span><span class="n">serie</span><span class="p">,</span> <span class="n">fecha</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Último valor disponible en o antes de <code>fecha</code>.</p>
+<p>Evita el <code>KeyError</code> cuando la fecha exacta no existe (fines de semana,
+series mensuales fechadas el día 1, etc.).</p>
+
+
+    </div>
+
+</div><h2 id="numeros-indice">Números índice<a class="headerlink" href="#numeros-indice" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.indice_base" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">indice_base</span>
+
+
+<a href="#banxicolab.indice_base" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">indice_base</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">valor</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Convierte a número índice: <code>valor × X_t / X_base</code>.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>base</code>
+            </td>
+            <td>
+                  <code>(<span title="fecha">fecha</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Periodo base. Se toma el último dato en o antes de esa fecha; si se
+omite, la primera observación válida.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>valor</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Valor del índice en la base (100 por convención).</p>
+              </div>
+            </td>
+            <td>
+                  <code>100</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.cambiar_base" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">cambiar_base</span>
+
+
+<a href="#banxicolab.cambiar_base" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">cambiar_base</span><span class="p">(</span><span class="n">indice</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">valor</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Rebasifica un índice ya construido, sin volver a los datos originales.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.empalmar" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">empalmar</span>
+
+
+<a href="#banxicolab.empalmar" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">empalmar</span><span class="p">(</span><span class="n">anterior</span><span class="p">,</span> <span class="n">nueva</span><span class="p">,</span> <span class="n">traslape</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Une dos tramos de un índice con bases distintas en una sola serie.</p>
+<p>El tramo <code>anterior</code> se reescala para que coincida con <code>nueva</code> en la
+fecha de traslape; de ahí en adelante se usa <code>nueva</code> tal cual. Las tasas
+de variación de ambos tramos se conservan intactas.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>traslape</code>
+            </td>
+            <td>
+                  <code>(<span title="fecha">fecha</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Fecha común en la que se igualan. Por omisión, la primera fecha de
+<code>nueva</code> que también existe en <code>anterior</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div><h2 id="tasas-de-variacion">Tasas de variación<a class="headerlink" href="#tasas-de-variacion" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.variacion" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">variacion</span>
+
+
+<a href="#banxicolab.variacion" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">variacion</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">periodos</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">porcentaje</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Tasa de variación respecto a <code>periodos</code> observaciones atrás.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>periodos</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>1 para la variación periodo a periodo; 12 para la anual de una serie
+mensual (ver también :func:<code>variacion_anual</code>).</p>
+              </div>
+            </td>
+            <td>
+                  <code>1</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>log</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Si es <code>True</code> devuelve la diferencia de logaritmos, que es aditiva en
+el tiempo. Se aproxima a la variación simple solo para cambios pequeños.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>porcentaje</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Multiplica por 100.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.variacion_anual" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">variacion_anual</span>
+
+
+<a href="#banxicolab.variacion_anual" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">variacion_anual</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">porcentaje</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Variación contra el mismo periodo del año anterior.</p>
+<p>Detecta sola si la serie es quincenal, mensual, trimestral o anual. Al comparar cada
+mes con el mismo mes del año previo, cancela la estacionalidad estable.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.anualizar" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">anualizar</span>
+
+
+<a href="#banxicolab.anualizar" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">anualizar</span><span class="p">(</span><span class="n">tasa</span><span class="p">,</span> <span class="n">periodos_por_anio</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">porcentaje</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Anualiza una tasa por capitalización compuesta: <code>(1 + r)^k − 1</code>.</p>
+<p>Multiplicar por <code>k</code> subestima el resultado; el error crece con la tasa.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>tasa</code>
+            </td>
+            <td>
+                  <code>Series, DataFrame o número</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Tasa por periodo (en % si <code>porcentaje=True</code>).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>periodos_por_anio</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>12 para una tasa mensual, 4 para trimestral.</p>
+              </div>
+            </td>
+            <td>
+                  <code>12</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div><h2 id="inflacion-y-precios-constantes">Inflación y precios constantes<a class="headerlink" href="#inflacion-y-precios-constantes" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.inflacion" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">inflacion</span>
+
+
+<a href="#banxicolab.inflacion" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">inflacion</span><span class="p">(</span><span class="n">indice</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Las cuatro lecturas habituales de la inflación, en %.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>indice</code>
+            </td>
+            <td>
+                  <code><span title="Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Índice de precios <strong>mensual</strong> (INPC, subyacente, etc.).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <ul>
+<li><code>mensual</code>: variación respecto al mes anterior.</li>
+<li><code>anual</code>: respecto al mismo mes del año anterior (la que se compara
+  con la meta de 3 % de Banxico).</li>
+<li><code>acumulada</code>: respecto a diciembre del año anterior.</li>
+<li><code>mensual_anualizada</code>: la mensual capitalizada a 12 meses; muy
+  volátil y afectada por la estacionalidad.</li>
+</ul>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">banxicolab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sie</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sie</span><span class="o">.</span><span class="n">inflacion</span><span class="p">(</span><span class="n">sie</span><span class="o">.</span><span class="n">serie</span><span class="p">(</span><span class="s2">"inpc"</span><span class="p">,</span> <span class="s2">"2020-01-01"</span><span class="p">))</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.inflacion_entre" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">inflacion_entre</span>
+
+
+<a href="#banxicolab.inflacion_entre" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">inflacion_entre</span><span class="p">(</span><span class="n">indice</span><span class="p">,</span> <span class="n">inicio</span><span class="p">,</span> <span class="n">fin</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Inflación acumulada (en %) entre dos fechas.</p>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inpc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">110.0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">"2020-01-01"</span><span class="p">,</span> <span class="s2">"2021-01-01"</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">inflacion_entre</span><span class="p">(</span><span class="n">inpc</span><span class="p">,</span> <span class="s2">"2020-01-01"</span><span class="p">,</span> <span class="s2">"2021-01-01"</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">10.0</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.deflactar" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">deflactar</span>
+
+
+<a href="#banxicolab.deflactar" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">deflactar</span><span class="p">(</span><span class="n">nominal</span><span class="p">,</span> <span class="n">precios</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Expresa una serie monetaria en pesos constantes.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>nominal</code>
+            </td>
+            <td>
+                  <code>Series o DataFrame</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Montos en pesos corrientes.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>precios</code>
+            </td>
+            <td>
+                  <code><span title="Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Índice de precios (normalmente el INPC) <strong>con la misma frecuencia y
+fechas</strong> que <code>nominal</code>.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>base</code>
+            </td>
+            <td>
+                  <code>(<span title="fecha">fecha</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Los resultados quedan en pesos de esa fecha. Si se omite se usa la base
+propia del índice (se divide entre <code>precios / 100</code>).</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.a_pesos_de" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">a_pesos_de</span>
+
+
+<a href="#banxicolab.a_pesos_de" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">a_pesos_de</span><span class="p">(</span><span class="n">monto</span><span class="p">,</span> <span class="n">origen</span><span class="p">,</span> <span class="n">destino</span><span class="p">,</span> <span class="n">precios</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Convierte un monto de la fecha <code>origen</code> a pesos de la fecha <code>destino</code>.</p>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inpc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">110.0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">"2020-01-01"</span><span class="p">,</span> <span class="s2">"2021-01-01"</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_pesos_de</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="s2">"2020-01-01"</span><span class="p">,</span> <span class="s2">"2021-01-01"</span><span class="p">,</span> <span class="n">inpc</span><span class="p">)</span>
+<span class="go">1100.0</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.tasa_real" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">tasa_real</span>
+
+
+<a href="#banxicolab.tasa_real" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">tasa_real</span><span class="p">(</span><span class="n">nominal</span><span class="p">,</span> <span class="n">inflacion</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">exacta</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Tasa de interés real ex-post (ecuación de Fisher), en %.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>nominal</code>
+            </td>
+            <td>
+                  <code><span title="Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Ambas en % anual y con el mismo índice.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>inflacion</code>
+            </td>
+            <td>
+                  <code><span title="Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Ambas en % anual y con el mismo índice.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>exacta</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>True</code>: <code>(1 + i) / (1 + π) − 1</code>. <code>False</code>: la aproximación
+<code>i − π</code>, que siempre sobreestima y empeora cuando la inflación es alta.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div><h2 id="tendencia-y-pronosticos">Tendencia y pronósticos<a class="headerlink" href="#tendencia-y-pronosticos" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.impulso" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">impulso</span>
+
+
+<a href="#banxicolab.impulso" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">impulso</span><span class="p">(</span><span class="n">indice</span><span class="p">,</span> <span class="n">meses</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ajustar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Ritmo reciente de la inflación: promedio móvil contra el previo, anualizado.</p>
+<p>Compara el promedio del índice en los últimos <code>meses</code> con el de los
+<code>meses</code> anteriores y anualiza el resultado (el «3m/3m anualizado» de los
+reportes de bancos centrales). Detecta los cambios de tendencia varios meses
+antes que la variación anual, que arrastra lo ocurrido hace un año.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>indice</code>
+            </td>
+            <td>
+                  <code><span title="Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Índice de precios mensual.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>meses</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Tamaño de la ventana (3 o 6 son los habituales).</p>
+              </div>
+            </td>
+            <td>
+                  <code>3</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ajustar</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Desestacionaliza antes con :func:<code>banxicolab.desestacionalizar</code>.
+Sin ajuste, el resultado refleja sobre todo
+el calendario.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>En % anualizado.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.persistencia" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">persistencia</span>
+
+
+<a href="#banxicolab.persistencia" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">persistencia</span><span class="p">(</span><span class="n">serie</span><span class="p">,</span> <span class="n">rezagos</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ventana</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Persistencia de la inflación: suma de los coeficientes de un AR(p).</p>
+<p>Cerca de 1, los choques tardan mucho en disiparse (la inflación se comporta
+casi como una caminata aleatoria); cerca de 0, se revierten pronto.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>serie</code>
+            </td>
+            <td>
+                  <code><span title="Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Inflación mensual (idealmente desestacionalizada) u otra serie
+estacionaria.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rezagos</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Orden <code>p</code> del autorregresivo, estimado por mínimos cuadrados.</p>
+              </div>
+            </td>
+            <td>
+                  <code>12</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ventana</code>
+            </td>
+            <td>
+                  <code>(<span title="int">int</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Si se indica, estima en ventanas móviles de ese tamaño y devuelve un
+<code>Series</code> para ver cómo cambia en el tiempo; si no, un solo número.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.pronosticar_inflacion" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">pronosticar_inflacion</span>
+
+
+<a href="#banxicolab.pronosticar_inflacion" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">pronosticar_inflacion</span><span class="p">(</span><span class="n">indice</span><span class="p">,</span> <span class="n">horizonte</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">metodo</span><span class="o">=</span><span class="s1">'sarima'</span><span class="p">,</span> <span class="n">nivel</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">orden</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">orden_estacional</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">simulaciones</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">semilla</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Pronostica la inflación a partir del índice de precios.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>indice</code>
+            </td>
+            <td>
+                  <code><span title="Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Índice de precios mensual (INPC, subyacente…), al menos 5 años.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>horizonte</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Meses a pronosticar.</p>
+              </div>
+            </td>
+            <td>
+                  <code>12</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>metodo</code>
+            </td>
+            <td>
+                  <code>(&#39;sarima&#39;, &#39;ingenuo&#39;)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <ul>
+<li><code>"sarima"</code>: SARIMA sobre el logaritmo del índice. El valor por
+  omisión, <code>(0,1,1)(0,1,1)₁₂</code>, es el «modelo de aerolíneas», la
+  referencia habitual para series mensuales con estacionalidad.</li>
+<li><code>"ingenuo"</code>: la inflación anual se mantiene en su último valor. Es
+  sorprendentemente difícil de superar a 12 meses; todo modelo debería
+  compararse contra él.</li>
+</ul>
+              </div>
+            </td>
+            <td>
+                  <code>&#34;sarima&#34;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>nivel</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Cobertura del intervalo (0.90 → de 5 % a 95 %). Solo con <code>"sarima"</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.9</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>orden</code>
+            </td>
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Especificación del SARIMA.</p>
+              </div>
+            </td>
+            <td>
+                  <code>(0, 1, 1)</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>orden_estacional</code>
+            </td>
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Especificación del SARIMA.</p>
+              </div>
+            </td>
+            <td>
+                  <code>(0, 1, 1)</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>simulaciones</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Trayectorias simuladas para construir el intervalo de la inflación
+anual, que depende de varios meses pronosticados a la vez.</p>
+              </div>
+            </td>
+            <td>
+                  <code>2000</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>semilla</code>
+            </td>
+            <td>
+                  <code>(<span title="int">int</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Fija las simulaciones para que el resultado sea reproducible.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Una fila por mes futuro: <code>indice</code>, <code>mensual</code>, <code>anual</code> y, con
+SARIMA, <code>anual_inf</code> y <code>anual_sup</code>. Todo en % salvo el índice.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>El intervalo refleja solo la incertidumbre de los choques futuros bajo el
+modelo; no incluye la de los parámetros ni la de haber elegido mal el
+modelo, así que es más estrecho que la incertidumbre real.</p>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.evaluar_pronosticos" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">evaluar_pronosticos</span>
+
+
+<a href="#banxicolab.evaluar_pronosticos" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">evaluar_pronosticos</span><span class="p">(</span><span class="n">indice</span><span class="p">,</span> <span class="n">horizontes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="o">*</span><span class="p">,</span> <span class="n">desde</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">paso</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">metodos</span><span class="o">=</span><span class="n">METODOS</span><span class="p">,</span> <span class="n">orden</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">orden_estacional</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Compara los métodos con pronósticos fuera de muestra de origen móvil.</p>
+<p>Para cada fecha de origen se estima el modelo <strong>solo con los datos
+disponibles hasta entonces</strong>, se pronostica la inflación anual y se compara
+con lo que realmente ocurrió.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>horizontes</code>
+            </td>
+            <td>
+                  <code>tuple de int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Meses hacia adelante a evaluar.</p>
+              </div>
+            </td>
+            <td>
+                  <code>(1, 3, 6, 12)</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>desde</code>
+            </td>
+            <td>
+                  <code>(<span title="fecha">fecha</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Primer origen. Por omisión, el último tercio de la muestra.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>paso</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Meses entre orígenes consecutivos. 1 es lo más preciso y lo más lento
+(cada origen reestima el SARIMA).</p>
+              </div>
+            </td>
+            <td>
+                  <code>3</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Raíz del error cuadrático medio, en puntos porcentuales de inflación
+anual, por horizonte (filas) y método (columnas), más <code>n</code> pronósticos
+evaluados. Los errores individuales quedan en <code>.attrs["errores"]</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div><h2 id="rendimientos-e-inflacion-implicita">Rendimientos e inflación implícita<a class="headerlink" href="#rendimientos-e-inflacion-implicita" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.rendimiento_bono" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">rendimiento_bono</span>
+
+
+<a href="#banxicolab.rendimiento_bono" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">rendimiento_bono</span><span class="p">(</span><span class="n">precio_limpio</span><span class="p">,</span> <span class="n">cupon</span><span class="p">,</span> <span class="n">plazo_dias</span><span class="p">,</span> <span class="n">valor_nominal</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">dias_cupon</span><span class="o">=</span><span class="mi">182</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Rendimiento a vencimiento (% anual) a partir del precio limpio.</p>
+<p>Inversa de :func:<code>precio_bono</code>, resuelta por bisección. Para un Udibono, el
+precio debe estar en UDIS (precio en pesos entre el valor de la UDI) y el
+resultado es un rendimiento <strong>real</strong>.</p>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">rendimiento_bono</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3640</span><span class="p">)),</span> <span class="mi">4</span><span class="p">)</span>   <span class="c1"># a la par rinde su cupón</span>
+<span class="go">8.0</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.precio_bono" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">precio_bono</span>
+
+
+<a href="#banxicolab.precio_bono" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">precio_bono</span><span class="p">(</span><span class="n">rendimiento</span><span class="p">,</span> <span class="n">cupon</span><span class="p">,</span> <span class="n">plazo_dias</span><span class="p">,</span> <span class="n">valor_nominal</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">dias_cupon</span><span class="o">=</span><span class="mi">182</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Precio limpio de un bono a tasa fija con la convención mexicana.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rendimiento</code>
+            </td>
+            <td>
+                  <code>número o Series</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Rendimiento a vencimiento, en % anual.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>cupon</code>
+            </td>
+            <td>
+                  <code>número o Series</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Tasa cupón, en % anual.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>plazo_dias</code>
+            </td>
+            <td>
+                  <code>número o Series</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Días por vencer.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>valor_nominal</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>100 pesos en los Bonos M; 100 UDIS en los Udibonos.</p>
+              </div>
+            </td>
+            <td>
+                  <code>100</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>dias_cupon</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Días entre cupones (182).</p>
+              </div>
+            </td>
+            <td>
+                  <code>182</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>Con <code>R = rendimiento × 182/360</code>, cupón <code>C = VN × cupón × 182/360</code>, <code>K</code>
+cupones por cobrar y <code>d</code> días transcurridos del cupón vigente:</p>
+<p><code>precio sucio = [C + C·(1/R − 1/(R(1+R)^(K−1))) + VN/(1+R)^(K−1)] / (1+R)^(1−d/182)</code></p>
+<p>y el precio limpio descuenta los intereses devengados <code>C·d/182</code>.</p>
+</details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.inflacion_implicita" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">inflacion_implicita</span>
+
+
+<a href="#banxicolab.inflacion_implicita" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">inflacion_implicita</span><span class="p">(</span><span class="n">nominal</span><span class="p">,</span> <span class="n">real</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Inflación implícita (<em>breakeven</em>): <code>(1 + i) / (1 + r) − 1</code>, en %.</p>
+<p>Es la inflación promedio que iguala el rendimiento de un bono nominal con el
+de uno indexado a la inflación del mismo plazo.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>nominal</code>
+            </td>
+            <td>
+                  <code>número o Series</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Rendimiento nominal (Bono M, Cetes), en % anual.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>real</code>
+            </td>
+            <td>
+                  <code>número o Series</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Rendimiento real (Udibono), en % anual.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p><strong>No es una expectativa pura.</strong> Incluye una prima por riesgo inflacionario
+(la sube) y una prima de liquidez de los Udibonos (la baja). Banxico la
+llama «compensación por inflación y riesgo inflacionario». Compárala con las
+expectativas de la encuesta (<code>"expectativa_inflacion_12m"</code>) antes de
+interpretarla.</p>
+</details>
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">inflacion_implicita</span><span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">4.2857</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.inflacion_implicita_forward" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">inflacion_implicita_forward</span>
+
+
+<a href="#banxicolab.inflacion_implicita_forward" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">inflacion_implicita_forward</span><span class="p">(</span><span class="n">corta</span><span class="p">,</span> <span class="n">larga</span><span class="p">,</span> <span class="n">plazo_corto</span><span class="p">,</span> <span class="n">plazo_largo</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Inflación implícita entre dos plazos futuros, en % anual.</p>
+<p>Con las implícitas a 10 y 20 años, por ejemplo, devuelve la que el mercado
+descuenta para los diez años que empiezan dentro de diez («10a10a»). Aísla
+el largo plazo de los choques de corto plazo.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>corta</code>
+            </td>
+            <td>
+                  <code>número o Series</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Inflación implícita al plazo corto y al largo, en %.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>larga</code>
+            </td>
+            <td>
+                  <code>número o Series</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Inflación implícita al plazo corto y al largo, en %.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>plazo_corto</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Plazos en años.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>plazo_largo</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Plazos en años.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div><h2 id="cambio-de-unidades">Cambio de unidades<a class="headerlink" href="#cambio-de-unidades" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.estandarizar" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">estandarizar</span>
+
+
+<a href="#banxicolab.estandarizar" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">estandarizar</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">referencia</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Puntaje z: <code>(x − media) / desviación estándar</code>.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>referencia</code>
+            </td>
+            <td>
+                  <code>Series o DataFrame, opcional</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Muestra de la que se calculan media y desviación. Al evaluar un modelo
+pasa aquí <strong>solo el conjunto de entrenamiento</strong> para no filtrar
+información del futuro (<em>data leakage</em>).</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.min_max" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">min_max</span>
+
+
+<a href="#banxicolab.min_max" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">min_max</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">referencia</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Reescala linealmente al intervalo <code>[a, b]</code>.</p>
+<p>Muy sensible a valores atípicos. Con <code>referencia</code> (entrenamiento) los
+datos nuevos pueden salir de <code>[a, b]</code>: eso es información, no un error.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.escalar_robusto" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">escalar_robusto</span>
+
+
+<a href="#banxicolab.escalar_robusto" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">escalar_robusto</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">referencia</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p><code>(x − mediana) / rango intercuartílico</code>: resistente a valores atípicos.</p>
+
+
+    </div>
+
+</div><h2 id="estacionalidad-y-estacionariedad">Estacionalidad y estacionariedad<a class="headerlink" href="#estacionalidad-y-estacionariedad" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.desestacionalizar" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">desestacionalizar</span>
+
+
+<a href="#banxicolab.desestacionalizar" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">desestacionalizar</span><span class="p">(</span><span class="n">serie</span><span class="p">,</span> <span class="n">modelo</span><span class="o">=</span><span class="s1">'multiplicativo'</span><span class="p">,</span> <span class="n">periodo</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Ajuste estacional sencillo por descomposición clásica (medias móviles).</p>
+<p>Sirve para explorar y enseñar. <strong>No</strong> reproduce las cifras oficiales, que
+usan X-13ARIMA-SEATS con efectos de calendario; si existe la serie
+desestacionalizada oficial (p. ej. <code>"igae_desestacionalizado"</code>), úsala.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>modelo</code>
+            </td>
+            <td>
+                  <code>(&#39;multiplicativo&#39;, &#39;aditivo&#39;)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+            <td>
+                  <code>&#34;multiplicativo&#34;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>periodo</code>
+            </td>
+            <td>
+                  <code>(<span title="int">int</span>, <span title="opcional">opcional</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Observaciones por ciclo; por omisión 12 o 4 según la frecuencia.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="banxicolab.prueba_adf" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">prueba_adf</span>
+
+
+<a href="#banxicolab.prueba_adf" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">prueba_adf</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">alfa</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>Prueba Dickey–Fuller Aumentada para una o varias series.</p>
+<p>Acepta un diccionario <code>{nombre: serie}</code>, ideal para comparar la misma
+variable bajo distintas transformaciones. H0: la serie tiene raíz unitaria;
+se rechaza (<code>estacionaria = True</code>) cuando <code>p_valor &lt; alfa</code>.</p>
+
+
+    </div>
+
+</div><h2 id="excepciones">Excepciones<a class="headerlink" href="#excepciones" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="banxicolab.errores"></a>
+    <div class="doc doc-contents first">
+
+        <p>Excepciones de la librería.</p>
+<p>Todas heredan de :class:<code>BanxicoError</code>, así que basta un solo <code>except</code> para
+atrapar cualquier fallo relacionado con el SIE.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="banxicolab.errores.BanxicoError" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">BanxicoError</span>
+
+
+<a href="#banxicolab.errores.BanxicoError" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="Exception">Exception</span></code></p>
+
+
+
+        <p>Error base de la librería.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="banxicolab.errores.TokenNoEncontrado" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">TokenNoEncontrado</span>
+
+
+<a href="#banxicolab.errores.TokenNoEncontrado" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="BanxicoError (banxicolab.errores.BanxicoError)" href="#banxicolab.errores.BanxicoError">BanxicoError</a></code></p>
+
+
+
+        <p>No se encontró un token en ninguna de las fuentes soportadas.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="banxicolab.errores.TokenInvalido" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">TokenInvalido</span>
+
+
+<a href="#banxicolab.errores.TokenInvalido" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="BanxicoError (banxicolab.errores.BanxicoError)" href="#banxicolab.errores.BanxicoError">BanxicoError</a></code></p>
+
+
+
+        <p>El SIE rechazó el token (o tiene un formato imposible).</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="banxicolab.errores.LimiteExcedido" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">LimiteExcedido</span>
+
+
+<a href="#banxicolab.errores.LimiteExcedido" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="BanxicoError (banxicolab.errores.BanxicoError)" href="#banxicolab.errores.BanxicoError">BanxicoError</a></code></p>
+
+
+
+        <p>Se superó el límite de consultas del token.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="banxicolab.errores.LimiteExcedido.segundos">segundos</span></code></td>
+            <td>
+                  <code><span title="int">int</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Segundos que faltan para que Banxico desbloquee el token.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="banxicolab.errores.SerieNoEncontrada" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">SerieNoEncontrada</span>
+
+
+<a href="#banxicolab.errores.SerieNoEncontrada" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="BanxicoError (banxicolab.errores.BanxicoError)" href="#banxicolab.errores.BanxicoError">BanxicoError</a></code></p>
+
+
+
+        <p>La clave no existe en el SIE ni en el catálogo de alias.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="banxicolab.errores.SinDatos" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">SinDatos</span>
+
+
+<a href="#banxicolab.errores.SinDatos" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="BanxicoError (banxicolab.errores.BanxicoError)" href="#banxicolab.errores.BanxicoError">BanxicoError</a></code></p>
+
+
+
+        <p>La consulta fue válida pero no devolvió ninguna observación.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="banxicolab.errores.ErrorDeConexion" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">ErrorDeConexion</span>
+
+
+<a href="#banxicolab.errores.ErrorDeConexion" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="BanxicoError (banxicolab.errores.BanxicoError)" href="#banxicolab.errores.BanxicoError">BanxicoError</a></code></p>
+
+
+
+        <p>No fue posible comunicarse con el servidor del SIE.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.sections", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
