@@ -1,5 +1,13 @@
 # Cambios
 
+## 0.4.1 — 2026-11-03
+
+- Gráficas interactivas con Plotly y paleta en escala de azules. `graficar` devuelve una figura
+  de Plotly (con `interactivo=False`, una gráfica fija de matplotlib).
+- Funciones de una línea para las gráficas más laboriosas: `graficar_contribuciones`,
+  `graficar_curva` y `graficar_pronostico`.
+- Corrige un docstring que impedía publicar la documentación de la 0.4.0.
+
 ## 0.4.0 — 2026-11-03
 
 - `anticipar_inflacion`: estima la inflación del mes con su primera quincena ya publicada, con

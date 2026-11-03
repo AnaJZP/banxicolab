@@ -27,7 +27,8 @@ dependencies = [
     "pandas>=2.2",
     "numpy>=1.24",
     "statsmodels>=0.14",  # desestacionalización, prueba ADF y pronósticos
-    "matplotlib>=3.7",  # gráficas de los ejemplos
+    "matplotlib>=3.7",  # gráficas fijas
+    "plotly>=5.20",  # gráficas interactivas
 ]
 
 [project.optional-dependencies]

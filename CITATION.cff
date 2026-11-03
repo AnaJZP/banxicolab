@@ -6,7 +6,7 @@ authors:
   - family-names: "Jiménez Preciado"
     given-names: "Ana Lorena"
     affiliation: "Escuela Superior de Economía, Instituto Politécnico Nacional"
-version: 0.4.0
+version: 0.4.1
 date-released: 2026-11-03
 license: BSD-3-Clause
 repository-code: "https://github.com/AnaJZP/banxicolab"

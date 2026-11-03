@@ -38,15 +38,16 @@ sie.inflacion(indices["inpc_subyacente"])  # tabla completa de la subyacente
 sie.graficar(anual.loc["2018":], "Inflación anual", unidad="%", meta=True)
 ```
 
-`meta=True` dibuja la meta de 3 % y el intervalo de 2 % a 4 %; la fuente, con
-las claves de las series, se agrega sola al pie. Ver [Gráficas](graficas.md).
+La gráfica es interactiva. `meta=True` dibuja la meta de 3 % y el intervalo de
+2 % a 4 %; la fuente, con las claves de las series, se agrega sola al pie. Ver
+[Gráficas](graficas.md).
 
 ## ¿Qué componentes la empujan?
 
 ```python
 bmx = sie.Banxico()
 aportes = bmx.contribuciones_inflacion("2019-01-01")
-aportes.tail()
+sie.graficar_contribuciones(aportes)
 ```
 
 Reparte la inflación anual, en puntos porcentuales, entre **mercancías,

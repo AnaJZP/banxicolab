@@ -137,7 +137,8 @@ Con los Cetes de 28 a 364 días y los Bonos M de referencia de hasta 30 años se
 arma la curva del día y se ajusta una curva de Nelson-Siegel:
 
 ```python
-curva = sie.Banxico().curva_rendimientos()     # o curva_rendimientos("2020-03-13")
+curva = sie.Banxico().curva_rendimientos()  # o curva_rendimientos("2020-03-13")
+sie.graficar_curva(curva)
 curva.attrs["curva"]
 ```
 

@@ -221,7 +221,8 @@ bmx.curva_rendimientos()  # Cetes y Bonos M con ajuste Nelson-Siegel
 sie.impulso(sie.serie("inpc_subyacente"), 3)  # 3m/3m anualizado
 sie.pronosticar_inflacion(inpc, 12)  # SARIMA con intervalo
 sie.evaluar_pronosticos(inpc, desde="2012-01-01")  # error fuera de muestra vs. método ingenuo
-sie.graficar(sie.variacion_anual(inpc), "Inflación anual", unidad="%", meta=True)
+sie.graficar(sie.variacion_anual(inpc), "Inflación anual", unidad="%", meta=True)  # interactiva
+sie.graficar_contribuciones(bmx.contribuciones_inflacion("2019-01-01"))
 ```
 
 Para que volver a ejecutar un notebook no gaste consultas, al inicio:

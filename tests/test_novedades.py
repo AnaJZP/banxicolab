@@ -204,18 +204,76 @@ def test_graficar_cita_la_fuente_y_dibuja_la_meta():
         index=pd.date_range("2026-01-01", periods=3, freq="MS"),
     )
     datos.attrs["series"] = {"General": {"id": "SP1"}, "Subyacente": {"id": "SP74625"}}
-    ax = sie.graficar(datos, "Inflación", unidad="%", meta=True)
+    ax = sie.graficar(datos, "Inflación", unidad="%", meta=True, interactivo=False)
     textos = [t.get_text() for t in ax.texts]
     assert any("SP1, SP74625" in t for t in textos)
     assert ax.get_title(loc="left") == "Inflación" and ax.get_ylabel() == "%"
     assert len(ax.lines) == 3  # dos series y la línea de la meta
     assert [linea.get_color() for linea in ax.lines[:2]] == sie.PALETA[:2]
 
-    sin_fuente = sie.graficar(datos["General"], fuente=False)
+    sin_fuente = sie.graficar(datos["General"], fuente=False, interactivo=False)
     assert not sin_fuente.texts
     with warnings.catch_warnings():
         warnings.simplefilter("error")
-        sie.graficar(datos, fuente="Fuente: propia", cero=True)
+        sie.graficar(datos, fuente="Fuente: propia", cero=True, interactivo=False)
     import matplotlib.pyplot as plt
 
     plt.close("all")
+
+
+def serie_larga():
+    fechas = pd.date_range("2015-01-01", periods=120, freq="MS")
+    datos = pd.DataFrame({"General": np.linspace(3, 5, 120), "Subyacente": 4.0}, index=fechas)
+    datos.attrs["series"] = {"General": {"id": "SP1"}, "Subyacente": {"id": "SP74625"}}
+    return datos
+
+
+def test_graficar_interactivo_con_plotly():
+    import plotly.graph_objects as go
+
+    fig = sie.graficar(serie_larga(), "Inflación", unidad="%", meta=True)
+    assert isinstance(fig, go.Figure) and len(fig.data) == 2
+    assert [traza.line.color for traza in fig.data] == sie.PALETA[:2]
+    assert "Inflación" in fig.layout.title.text and fig.layout.yaxis.title.text == "%"
+    assert any("SP1, SP74625" in a.text for a in fig.layout.annotations)
+    assert any(a.text == "Meta 3 %" for a in fig.layout.annotations)
+    assert len(fig.layout.shapes) == 2  # franja de 2 a 4 % y línea de la meta
+    assert fig.layout.xaxis.rangeselector.buttons[-1].label == "Todo"  # serie de 10 años
+
+    barras = sie.graficar(serie_larga().iloc[:12], tipo="barras", fuente=False)
+    assert all(isinstance(t, go.Bar) for t in barras.data) and not barras.layout.annotations
+    assert not barras.layout.xaxis.rangeselector.buttons  # serie corta: sin botones de periodo
+    with pytest.raises(ValueError, match="tipo"):
+        sie.graficar(serie_larga(), tipo="pastel")
+
+
+def test_graficas_especializadas():
+    import plotly.graph_objects as go
+
+    total, comp = componentes_sinteticos()
+    aportes = sie.contribuciones(total, comp, 12, cambios=["2021-01-01"])
+    fig = sie.graficar_contribuciones(aportes)
+    assert fig.layout.barmode == "relative"
+    assert [t.name for t in fig.data] == ["A", "B", "C", "Inflación"]
+
+    titulos = ["Cetes 28", "Cetes 364", "Bono M 0-3 años", "Bono M 7-10 años", "Bono M 20-30 años"]
+    curva = pd.DataFrame(
+        {"titulo": titulos, "plazo": [0.08, 1.0, 3.0, 9.0, 28.0],
+         "rendimiento": [6.4, 7.0, 8.0, 9.2, 9.8]}
+    )  # fmt: skip
+    curva.attrs.update(
+        curva=sie.nelson_siegel(curva["plazo"], curva["rendimiento"]),
+        fecha=pd.Timestamp("2026-10-30"),
+    )
+    fig = sie.graficar_curva(curva)
+    assert "30/10/2026" in fig.layout.title.text and len(fig.data) == 2
+    assert fig.layout.xaxis.title.text == "Plazo (años)"
+
+    historia = serie_larga()["General"]
+    pronostico = pd.DataFrame(
+        {"anual": [5.0, 5.1], "anual_inf": [4.5, 4.4], "anual_sup": [5.5, 5.8]},
+        index=pd.date_range("2025-01-01", periods=2, freq="MS"),
+    )
+    fig = sie.graficar_pronostico(historia, pronostico)
+    assert [t.name for t in fig.data] == ["Observada", "Intervalo", "Pronóstico"]
+    assert isinstance(fig.data[1], go.Scatter) and fig.data[1].fill == "toself"

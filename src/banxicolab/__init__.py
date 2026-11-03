@@ -29,7 +29,13 @@ from .errores import (
     TokenInvalido,
     TokenNoEncontrado,
 )
-from .graficos import PALETA, graficar
+from .graficos import (
+    PALETA,
+    graficar,
+    graficar_contribuciones,
+    graficar_curva,
+    graficar_pronostico,
+)
 from .precios import (
     anticipar_inflacion,
     contribuciones,
@@ -66,9 +72,12 @@ from .transformaciones import (
     variacion_anual,
 )
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 
 __all__ = [
+    "graficar_contribuciones",
+    "graficar_curva",
+    "graficar_pronostico",
     "PALETA",
     "anticipar_inflacion",
     "configurar",

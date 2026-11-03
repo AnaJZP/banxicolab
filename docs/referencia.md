@@ -68,6 +68,9 @@ parámetros que los métodos de `Banxico`.
 ## Gráficas
 
 ::: banxicolab.graficar
+::: banxicolab.graficar_contribuciones
+::: banxicolab.graficar_curva
+::: banxicolab.graficar_pronostico
 
 ## Configuración
 

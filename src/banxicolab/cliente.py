@@ -576,6 +576,8 @@ class Banxico:
     ) -> pd.DataFrame:
         """Aportación de cada componente a la inflación, en puntos porcentuales.
 
+        El método está descrito en :func:`banxicolab.contribuciones`.
+
         Parameters
         ----------
         periodos : int
@@ -583,8 +585,6 @@ class Banxico:
         desglose : {"componentes", "subyacente"}
             ``"componentes"``: mercancías, servicios, agropecuarios y
             energéticos y tarifas. ``"subyacente"``: subyacente y no subyacente.
-
-        Ver :func:`banxicolab.contribuciones` para el método.
         """
         from .precios import contribuciones as _contribuciones
 
