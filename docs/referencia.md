@@ -49,6 +49,9 @@ parámetros que los métodos de `Banxico`.
 
 ## Tendencia y pronósticos
 
+::: banxicolab.anticipar_inflacion
+::: banxicolab.contribuciones
+
 ::: banxicolab.impulso
 ::: banxicolab.persistencia
 ::: banxicolab.pronosticar_inflacion
@@ -60,6 +63,15 @@ parámetros que los métodos de `Banxico`.
 ::: banxicolab.precio_bono
 ::: banxicolab.inflacion_implicita
 ::: banxicolab.inflacion_implicita_forward
+::: banxicolab.nelson_siegel
+
+## Gráficas
+
+::: banxicolab.graficar
+
+## Configuración
+
+::: banxicolab.configurar
 
 ## Cambio de unidades
 

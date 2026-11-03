@@ -24,6 +24,10 @@ mensual.
 | `inpc` | `SP1` | INPC, índice general | Mensual | Índice | ultimo |
 | `inpc_subyacente` | `SP74625` | INPC subyacente | Mensual | Índice | ultimo |
 | `inpc_no_subyacente` | `SP74630` | INPC no subyacente | Mensual | Índice | ultimo |
+| `inpc_mercancias` | `SP74626` | INPC subyacente: mercancías | Mensual | Índice | ultimo |
+| `inpc_servicios` | `SP74628` | INPC subyacente: servicios | Mensual | Índice | ultimo |
+| `inpc_agropecuarios` | `SP56337` | INPC no subyacente: agropecuarios | Mensual | Índice | ultimo |
+| `inpc_energeticos` | `SP74631` | INPC no subyacente: energéticos y tarifas del gobierno | Mensual | Índice | ultimo |
 | `inflacion_mensual` | `SP30577` | INPC, variación mensual | Mensual | % | ultimo |
 | `inflacion_anual` | `SP30578` | INPC, variación anual | Mensual | % | ultimo |
 | `inflacion_acumulada` | `SP30579` | INPC, variación acumulada en el año | Mensual | % | ultimo |

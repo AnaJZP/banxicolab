@@ -11,6 +11,7 @@ from .alias import CATALOGO, TEMAS, catalogo
 from .cliente import (
     Banxico,
     buscar,
+    configurar,
     descargar,
     info,
     metadatos,
@@ -28,11 +29,20 @@ from .errores import (
     TokenInvalido,
     TokenNoEncontrado,
 )
-from .precios import impulso, inflacion, inflacion_entre, persistencia
+from .graficos import PALETA, graficar
+from .precios import (
+    anticipar_inflacion,
+    contribuciones,
+    impulso,
+    inflacion,
+    inflacion_entre,
+    persistencia,
+)
 from .pronostico import evaluar_pronosticos, pronosticar_inflacion
 from .renta_fija import (
     inflacion_implicita,
     inflacion_implicita_forward,
+    nelson_siegel,
     precio_bono,
     rendimiento_bono,
 )
@@ -56,9 +66,15 @@ from .transformaciones import (
     variacion_anual,
 )
 
-__version__ = "0.3.3"
+__version__ = "0.4.0"
 
 __all__ = [
+    "PALETA",
+    "anticipar_inflacion",
+    "configurar",
+    "contribuciones",
+    "graficar",
+    "nelson_siegel",
     "TEMAS",
     "panel",
     "rendimiento_bono",

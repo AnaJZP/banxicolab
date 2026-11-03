@@ -98,7 +98,7 @@ sie.oportuno(["fix", "tasa_objetivo"])  # último dato publicado
 
 ## Catálogo
 
-Las 35 series con alias. La columna *A mensual* es la regla que usa `panel`.
+Las 39 series con alias. La columna *A mensual* es la regla que usa `panel`.
 Cualquier otra clave del SIE funciona directamente con `descargar`.
 
 ### Precios
@@ -110,6 +110,10 @@ Cualquier otra clave del SIE funciona directamente con `descargar`.
 | `inpc` | `SP1` | INPC, índice general | Mensual | Índice | ultimo |
 | `inpc_subyacente` | `SP74625` | INPC subyacente | Mensual | Índice | ultimo |
 | `inpc_no_subyacente` | `SP74630` | INPC no subyacente | Mensual | Índice | ultimo |
+| `inpc_mercancias` | `SP74626` | INPC subyacente: mercancías | Mensual | Índice | ultimo |
+| `inpc_servicios` | `SP74628` | INPC subyacente: servicios | Mensual | Índice | ultimo |
+| `inpc_agropecuarios` | `SP56337` | INPC no subyacente: agropecuarios | Mensual | Índice | ultimo |
+| `inpc_energeticos` | `SP74631` | INPC no subyacente: energéticos y tarifas del gobierno | Mensual | Índice | ultimo |
 | `inflacion_mensual` | `SP30577` | INPC, variación mensual | Mensual | % | ultimo |
 | `inflacion_anual` | `SP30578` | INPC, variación anual | Mensual | % | ultimo |
 | `inflacion_acumulada` | `SP30579` | INPC, variación acumulada en el año | Mensual | % | ultimo |
@@ -210,10 +214,18 @@ bmx = sie.Banxico()
 bmx.inflacion_implicita(10, "2015-01-01")  # rendimiento de Bono M y Udibono, e implícita
 sie.rendimiento_bono(90.63, cupon=8.0, plazo_dias=3426)  # convención mexicana 182/360
 
+bmx.anticipar_inflacion()  # el mes, con su primera quincena ya publicada
+bmx.contribuciones_inflacion("2019-01-01")  # puntos que aporta cada componente
+bmx.curva_rendimientos()  # Cetes y Bonos M con ajuste Nelson-Siegel
+
 sie.impulso(sie.serie("inpc_subyacente"), 3)  # 3m/3m anualizado
 sie.pronosticar_inflacion(inpc, 12)  # SARIMA con intervalo
 sie.evaluar_pronosticos(inpc, desde="2012-01-01")  # error fuera de muestra vs. método ingenuo
+sie.graficar(sie.variacion_anual(inpc), "Inflación anual", unidad="%", meta=True)
 ```
+
+Para que volver a ejecutar un notebook no gaste consultas, al inicio:
+`sie.configurar(cache="disco")`.
 
 ## Documentación
 
@@ -229,11 +241,13 @@ mkdocs serve
 
 ## Ejemplos
 
-- `examples/inicio_rapido.ipynb`: descarga, inflación y tasa real en pocas celdas.
-- `examples/seminario_transformaciones.ipynb`: el seminario completo de
-  transformaciones, con cada una justificada y verificada con la prueba ADF.
-- `examples/inflacion_mercado_y_pronosticos.ipynb`: medidas de tendencia, inflación
-  implícita en Bonos M y Udibonos, y pronósticos evaluados fuera de muestra.
+Ejecutados con datos reales; el botón los abre en Google Colab, listos para correr.
+
+| Notebook | | |
+|---|---|---|
+| Inicio rápido | Descarga, inflación y tasa real en pocas celdas | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AnaJZP/banxicolab/blob/main/examples/inicio_rapido.ipynb) |
+| Seminario de transformaciones | Cada transformación justificada y verificada con la prueba ADF | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AnaJZP/banxicolab/blob/main/examples/seminario_transformaciones.ipynb) |
+| Inflación: mercado y pronósticos | Tendencia, el mes anticipado, contribuciones, inflación implícita, curva de rendimientos y pronósticos | [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AnaJZP/banxicolab/blob/main/examples/inflacion_mercado_y_pronosticos.ipynb) |
 
 ## Desarrollo
 
@@ -243,9 +257,12 @@ pytest              # pruebas sin red
 pytest -m red       # verifica el catálogo de alias contra Banxico (sin token)
 ```
 
-## Autoría
+## Autoría y cita
 
 Ana Lorena Jiménez Preciado · Escuela Superior de Economía, Instituto Politécnico Nacional.
+
+Si usas la librería en un trabajo académico, puedes citarla con el botón
+«Cite this repository» de GitHub, que toma los datos de `CITATION.cff`.
 
 ## Datos
 

@@ -127,12 +127,32 @@ Banxico limita cada token a:
 La librería ayuda de tres formas:
 
 1. **Lotes**: 45 series son 3 consultas, no 45.
-2. **Caché en memoria**: repetir la misma descarga en la misma sesión no gasta
-   consultas. `sie.Banxico().limpiar_cache()` la vacía; `Banxico(cache=False)`
-   la desactiva.
+2. **Caché**: repetir la misma descarga en la misma sesión no gasta
+   consultas. Con la caché en disco, tampoco al volver a abrir el notebook
+   (ver abajo).
 3. **Espera**: si el token queda bloqueado por menos de `espera_maxima`
    segundos (60 por omisión), espera y reintenta; si es más, lanza
    `LimiteExcedido` con los segundos restantes en `.segundos`.
+
+### Caché en disco
+
+Por omisión, la librería recuerda las descargas mientras dura la sesión. Para
+que también se conserven al cerrar y volver a abrir el notebook, al inicio:
+
+```python
+sie.configurar(cache="disco")
+```
+
+o, con un cliente propio, `sie.Banxico(cache="disco")`. Es lo recomendable en
+clase, donde muchas personas ejecutan el mismo notebook varias veces.
+
+- Las respuestas se guardan en `~/.cache/banxicolab` (en Windows,
+  `%LOCALAPPDATA%\banxicolab\cache`). Solo contienen datos públicos; el token
+  nunca se escribe ahí.
+- Cada respuesta se considera vigente 12 horas; se cambia con
+  `vigencia_cache=24`, por ejemplo.
+- El último dato publicado (`oportuno`) nunca se toma del disco.
+- `limpiar_cache()` borra lo guardado, en memoria y en disco.
 
 ## Errores
 

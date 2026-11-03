@@ -35,15 +35,44 @@ sie.inflacion(indices["inpc_subyacente"])  # tabla completa de la subyacente
 ## Graficar contra la meta
 
 ```python
-import matplotlib.pyplot as plt
-
-ax = anual.loc["2018":].plot(figsize=(10, 4), lw=1.6)
-ax.axhline(3, ls="--", color="gray", label="Meta 3 %")
-ax.axhspan(2, 4, color="gray", alpha=0.1)
-ax.set_ylabel("% anual")
-ax.legend()
-plt.show()
+sie.graficar(anual.loc["2018":], "Inflación anual", unidad="%", meta=True)
 ```
+
+`meta=True` dibuja la meta de 3 % y el intervalo de 2 % a 4 %; la fuente, con
+las claves de las series, se agrega sola al pie. Ver [Gráficas](graficas.md).
+
+## ¿Qué componentes la empujan?
+
+```python
+bmx = sie.Banxico()
+aportes = bmx.contribuciones_inflacion("2019-01-01")
+aportes.tail()
+```
+
+Reparte la inflación anual, en puntos porcentuales, entre **mercancías,
+servicios, agropecuarios y energéticos y tarifas**; con
+`desglose="subyacente"`, entre subyacente y no subyacente. Con `periodos=1`
+reparte la mensual.
+
+| Columna | Contenido |
+|---|---|
+| un componente por columna | su aportación en puntos porcentuales |
+| `total` | la inflación del periodo |
+| `residuo` | lo que la suma no explica |
+
+**Cómo funciona.** Dentro de cada periodo con ponderadores fijos, el INPC es
+una suma exacta de sus componentes. Los coeficientes de esa suma se estiman de
+los propios datos, así que no hace falta conocer los ponderadores oficiales.
+Los periodos que cruzan un cambio de ponderadores se encadenan en el mes de
+enlace. Con datos de 2000 a 2026 el residuo nunca pasa de 0.02 puntos.
+
+Los cambios de ponderadores se identificaron en los datos (julio de 2002,
+enero de 2011, febrero de 2013, agosto de 2018 y agosto de 2024). Si INEGI
+hace uno nuevo, la función avisa que el total dejó de ser una suma exacta y
+que las contribuciones son aproximadas.
+
+Para usar otros índices, la versión general es
+`sie.contribuciones(total, componentes)`.
 
 ## Calculada aquí o calculada por Banxico
 

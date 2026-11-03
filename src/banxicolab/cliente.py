@@ -13,6 +13,7 @@ import pandas as pd
 import requests
 
 from . import alias as _catalogo
+from ._cache import CacheDisco
 from .errores import (
     BanxicoError,
     ErrorDeConexion,
@@ -90,9 +91,15 @@ class Banxico:
         Segundos de espera por petición.
     reintentos : int
         Reintentos ante fallas de red o errores 5xx (con espera creciente).
-    cache : bool
-        Guarda en memoria las respuestas para no gastar consultas repitiendo la
-        misma petición. Banxico recomienda expresamente cachear.
+    cache : {True, "disco", False}
+        ``True`` guarda las respuestas en memoria mientras dura la sesión.
+        ``"disco"`` además las guarda en un archivo local, de modo que volver a
+        ejecutar un notebook o un script no gasta consultas. ``False`` no
+        guarda nada. Banxico recomienda expresamente cachear.
+    vigencia_cache : float
+        Horas que una respuesta guardada en disco se considera vigente.
+    carpeta_cache : str o Path, opcional
+        Dónde guardar la caché en disco; por omisión ``~/.cache/banxicolab``.
     espera_maxima : float
         Si se supera el límite de consultas y el desbloqueo ocurre en menos de
         estos segundos, se espera y se reintenta; si no, se lanza
@@ -113,7 +120,9 @@ class Banxico:
         *,
         timeout: float = 30,
         reintentos: int = 3,
-        cache: bool = True,
+        cache: bool | str = True,
+        vigencia_cache: float = 12,
+        carpeta_cache=None,
         espera_maxima: float = 60,
         sesion: requests.Session | None = None,
     ):
@@ -124,7 +133,10 @@ class Banxico:
         self.reintentos = reintentos
         self.espera_maxima = espera_maxima
         self._sesion = sesion or requests.Session()
+        if cache not in (True, False, "disco"):
+            raise ValueError('cache debe ser True, False o "disco"')
         self._cache: dict[tuple, Any] | None = {} if cache else None
+        self._disco = CacheDisco(carpeta_cache, vigencia_cache) if cache == "disco" else None
 
     def __repr__(self) -> str:
         token = enmascarar(self._token) if self._token else "sin resolver"
@@ -133,14 +145,23 @@ class Banxico:
     # ── Infraestructura ──────────────────────────────────────────────────────
 
     def limpiar_cache(self) -> None:
-        """Olvida las respuestas guardadas (p. ej. tras una nueva publicación)."""
+        """Olvida las respuestas guardadas, en memoria y en disco (p. ej. tras una publicación)."""
         if self._cache is not None:
             self._cache.clear()
+        if self._disco is not None:
+            self._disco.limpiar()
 
     def _pedir(self, ruta: str, params: dict | None = None, *, con_token: bool = True) -> dict:
         llave = (ruta, tuple(sorted((params or {}).items())))
         if self._cache is not None and llave in self._cache:
             return self._cache[llave]
+        # El último dato publicado cambia a diario: no se guarda en disco
+        en_disco = self._disco is not None and not ruta.endswith("/oportuno")
+        if en_disco:
+            guardado = self._disco.obtener(llave)
+            if guardado is not None:
+                self._cache[llave] = guardado
+                return guardado
 
         # El token viaja en un encabezado, nunca en la URL: así no aparece en
         # mensajes de error, bitácoras ni historiales.
@@ -203,6 +224,8 @@ class Banxico:
 
         if self._cache is not None:
             self._cache[llave] = cuerpo
+        if en_disco:
+            self._disco.guardar(llave, cuerpo)
         return cuerpo
 
     @staticmethod
@@ -533,8 +556,168 @@ class Banxico:
         datos = self.descargar({**claves, "SP68257": "udi"}, inicio, fin)
         return renta_fija.desde_vector(datos)
 
+    def anticipar_inflacion(self, *, anios: int = 8, historial: bool = False) -> pd.DataFrame:
+        """Anticipa la inflación del mes con su primera quincena ya publicada.
+
+        Descarga el INPC quincenal. Ver :func:`banxicolab.anticipar_inflacion`.
+        """
+        from .precios import anticipar_inflacion as _anticipar
+
+        inicio = None if historial else pd.Timestamp.today() - pd.DateOffset(years=anios + 3)
+        return _anticipar(self.serie("inpc_quincenal", inicio), anios=anios, historial=historial)
+
+    def contribuciones_inflacion(
+        self,
+        inicio: Fecha | None = None,
+        fin: Fecha | None = None,
+        *,
+        periodos: int = 12,
+        desglose: str = "componentes",
+    ) -> pd.DataFrame:
+        """Aportación de cada componente a la inflación, en puntos porcentuales.
+
+        Parameters
+        ----------
+        periodos : int
+            12 para la inflación anual; 1 para la mensual.
+        desglose : {"componentes", "subyacente"}
+            ``"componentes"``: mercancías, servicios, agropecuarios y
+            energéticos y tarifas. ``"subyacente"``: subyacente y no subyacente.
+
+        Ver :func:`banxicolab.contribuciones` para el método.
+        """
+        from .precios import contribuciones as _contribuciones
+
+        partes = {
+            "componentes": [
+                "inpc_mercancias",
+                "inpc_servicios",
+                "inpc_agropecuarios",
+                "inpc_energeticos",
+            ],
+            "subyacente": ["inpc_subyacente", "inpc_no_subyacente"],
+        }
+        if desglose not in partes:
+            raise ValueError(f"desglose debe ser uno de {sorted(partes)}")
+        # Siempre desde 2000: los coeficientes se estiman con cada tramo completo
+        nombres = {a: a.removeprefix("inpc_") for a in partes[desglose]}
+        datos = self.descargar({"inpc": "inpc", **nombres}, "2000-01-01", fin)
+        tabla = _contribuciones(datos["inpc"], datos[list(nombres.values())], periodos)
+        return tabla if inicio is None else tabla.loc[pd.Timestamp(inicio) :]
+
+    def _vector_de_curva(self, inicio: Fecha | None, fin: Fecha | None) -> pd.DataFrame:
+        from .renta_fija import VECTOR_BONOS, VECTOR_CETES
+
+        claves = {}
+        for nombre, (tasa, dias) in VECTOR_CETES.items():
+            claves[tasa], claves[dias] = f"{nombre}|tasa", f"{nombre}|dias"
+        for nombre, (precio, cupon, dias) in VECTOR_BONOS.items():
+            claves[precio], claves[cupon] = f"{nombre}|precio", f"{nombre}|cupon"
+            claves[dias] = f"{nombre}|dias"
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")  # algún rango de bonos puede no tener datos
+            return self.descargar(claves, inicio, fin)
+
+    def curva_rendimientos(self, fecha: Fecha | None = None) -> pd.DataFrame:
+        """Curva de rendimientos de Cetes y Bonos M de un día, con su ajuste Nelson-Siegel.
+
+        Parameters
+        ----------
+        fecha : fecha, opcional
+            Por omisión, el último día con datos. Si la fecha no tuvo
+            operaciones se toma el día hábil anterior.
+
+        Returns
+        -------
+        pandas.DataFrame
+            Una fila por título: ``titulo``, ``plazo`` (años), ``rendimiento``
+            observado y ``ajustado`` por la curva (% anual). La curva queda en
+            ``df.attrs["curva"]`` y se puede evaluar en cualquier plazo:
+            ``df.attrs["curva"](10)``.
+
+        Notes
+        -----
+        Son rendimientos a vencimiento de los títulos de referencia del vector
+        de precios de Banxico, no una curva cupón cero. Los Cetes cotizan a
+        tasa de rendimiento y los Bonos M a rendimiento con cupones
+        semestrales, así que la curva mezcla convenciones cercanas pero no
+        idénticas.
+        """
+        from .renta_fija import nelson_siegel, puntos_de_curva
+
+        hasta = pd.Timestamp(fecha) if fecha is not None else pd.Timestamp.today()
+        puntos = puntos_de_curva(self._vector_de_curva(hasta - pd.Timedelta(days=14), hasta))
+        dias = puntos.groupby("fecha").size()
+        completos = dias[dias >= 4]
+        if completos.empty:
+            raise SinDatos("No hay suficientes títulos con precio en esas fechas.")
+        dia = completos.index.max()
+        tabla = puntos[puntos["fecha"] == dia].drop(columns="fecha").reset_index(drop=True)
+        curva = nelson_siegel(tabla["plazo"], tabla["rendimiento"])
+        tabla["ajustado"] = curva(tabla["plazo"].to_numpy())
+        tabla.attrs.update({"curva": curva, "fecha": dia})
+        return tabla
+
+    def curva_historica(
+        self,
+        inicio: Fecha,
+        fin: Fecha | None = None,
+        *,
+        plazos=(0.25, 1, 2, 5, 10, 20, 30),
+    ) -> pd.DataFrame:
+        """Curva de rendimientos ajustada cada día, evaluada en plazos fijos.
+
+        Returns
+        -------
+        pandas.DataFrame
+            Una fila por día: el rendimiento ajustado a cada plazo (columnas
+            ``"3m"``, ``"1a"``, ``"10a"``…) y los parámetros de Nelson-Siegel
+            (``nivel``, ``pendiente``, ``curvatura``, ``lam``, ``error``).
+            ``pendiente`` negativa significa tasas largas mayores que las cortas.
+        """
+        from .renta_fija import nelson_siegel, puntos_de_curva
+
+        puntos = puntos_de_curva(self._vector_de_curva(inicio, fin))
+        filas = {}
+        for dia, grupo in puntos.groupby("fecha"):
+            if len(grupo) < 4:
+                continue
+            curva = nelson_siegel(grupo["plazo"], grupo["rendimiento"])
+            valores = dict(zip(map(_etiqueta_plazo, plazos), curva(list(plazos)), strict=True))
+            filas[dia] = {**valores, **curva.parametros()}
+        tabla = pd.DataFrame.from_dict(filas, orient="index")
+        tabla.index.name = "fecha"
+        return tabla
+
+
+def _etiqueta_plazo(anios: float) -> str:
+    return f"{round(anios * 12)}m" if anios < 1 else f"{anios:g}a"
+
 
 _compartido: Banxico | None = None
+
+
+def configurar(
+    *,
+    cache: bool | str = True,
+    vigencia_cache: float = 12,
+    carpeta_cache=None,
+    token: str | None = None,
+) -> Banxico:
+    """Ajusta el cliente que usan las funciones del módulo (``sie.descargar``…).
+
+    Examples
+    --------
+    Para que volver a ejecutar un notebook no gaste consultas:
+
+    >>> import banxicolab as sie
+    >>> sie.configurar(cache="disco")      # doctest: +SKIP
+    """
+    global _compartido
+    _compartido = Banxico(
+        token, cache=cache, vigencia_cache=vigencia_cache, carpeta_cache=carpeta_cache
+    )
+    return _compartido
 
 
 def _cliente() -> Banxico:

@@ -180,3 +180,139 @@ def desde_vector(datos: pd.DataFrame) -> pd.DataFrame:
             "plazo_real": d["dias_real"] / 365.25,
         }
     )
+
+
+# ── Curva de rendimientos ────────────────────────────────────────────────────
+
+# Vector de precios: Cetes (tasa de rendimiento y días por vencer) y Bonos M por
+# rango de vencimiento (precio limpio, cupón y días por vencer).
+VECTOR_CETES: dict[str, tuple[str, str]] = {
+    "Cetes 28": ("SF45470", "SF45422"),
+    "Cetes 91": ("SF45471", "SF45423"),
+    "Cetes 182": ("SF45472", "SF45424"),
+    "Cetes 364": ("SF45473", "SF45425"),
+}
+VECTOR_BONOS: dict[str, tuple[str, str, str]] = {
+    "Bono M 0-3 años": ("SF45448", "SF45475", "SF45427"),
+    "Bono M 3-5 años": ("SF45450", "SF45476", "SF45428"),
+    "Bono M 5-7 años": ("SF45452", "SF45477", "SF45429"),
+    "Bono M 7-10 años": ("SF45454", "SF45478", "SF45430"),
+    "Bono M 10-20 años": ("SF45456", "SF45479", "SF45431"),
+    "Bono M 20-30 años": ("SF60721", "SF60723", "SF60720"),
+}
+
+
+def _cargas(plazos: np.ndarray, lam: float) -> np.ndarray:
+    x = plazos / lam
+    pendiente = (1 - np.exp(-x)) / x
+    return np.column_stack([np.ones_like(plazos), pendiente, pendiente - np.exp(-x)])
+
+
+class CurvaNS:
+    """Curva de Nelson-Siegel ajustada: ``nivel``, ``pendiente``, ``curvatura`` y ``lam``.
+
+    Se evalúa como función: ``curva(10)`` da el rendimiento a 10 años, en %.
+    """
+
+    def __init__(self, nivel: float, pendiente: float, curvatura: float, lam: float, error: float):
+        self.nivel, self.pendiente, self.curvatura, self.lam = nivel, pendiente, curvatura, lam
+        self.error = error  # raíz del error cuadrático medio del ajuste, en puntos porcentuales
+
+    def __call__(self, plazos):
+        p = np.atleast_1d(np.asarray(plazos, dtype=float))
+        valores = _cargas(p, self.lam) @ np.array([self.nivel, self.pendiente, self.curvatura])
+        return valores if np.ndim(plazos) else float(valores[0])
+
+    def __repr__(self) -> str:
+        return (
+            f"CurvaNS(nivel={self.nivel:.3f}, pendiente={self.pendiente:.3f}, "
+            f"curvatura={self.curvatura:.3f}, lam={self.lam:.2f}, error={self.error:.3f})"
+        )
+
+    def parametros(self) -> dict:
+        return {
+            "nivel": self.nivel,
+            "pendiente": self.pendiente,
+            "curvatura": self.curvatura,
+            "lam": self.lam,
+            "error": self.error,
+        }
+
+
+def nelson_siegel(plazos, rendimientos) -> CurvaNS:
+    """Ajusta una curva de Nelson-Siegel a rendimientos observados.
+
+    .. math::
+
+        y(\\tau) = \\beta_0 + \\beta_1 \\, g(\\tau)
+                  + \\beta_2 \\left(g(\\tau) - e^{-\\tau/\\lambda}\\right),
+        \\qquad g(\\tau) = \\frac{1-e^{-\\tau/\\lambda}}{\\tau/\\lambda}
+
+    ``nivel`` (:math:`\\beta_0`) es la tasa de largo plazo; ``pendiente``
+    (:math:`\\beta_1`), la diferencia entre el corto y el largo plazo (negativa
+    cuando la curva tiene pendiente positiva); ``curvatura`` (:math:`\\beta_2`),
+    la joroba en los plazos medios; y ``lam`` (:math:`\\lambda`), en años, dónde
+    se ubica esa joroba.
+
+    Para cada :math:`\\lambda` de una rejilla, los tres coeficientes se obtienen
+    por mínimos cuadrados; se elige el :math:`\\lambda` con menor error. Es
+    determinista y no depende de valores iniciales.
+
+    Parameters
+    ----------
+    plazos : arreglo
+        Plazos en años.
+    rendimientos : arreglo
+        Rendimientos en % anual.
+    """
+    p = np.asarray(plazos, dtype=float)
+    y = np.asarray(rendimientos, dtype=float)
+    validos = np.isfinite(p) & np.isfinite(y) & (p > 0)
+    p, y = p[validos], y[validos]
+    if len(p) < 4:
+        raise ValueError("Se necesitan al menos 4 plazos para ajustar la curva.")
+    mejor = None
+    for lam in np.geomspace(0.1, 15, 150):
+        x = _cargas(p, lam)
+        beta, *_ = np.linalg.lstsq(x, y, rcond=None)
+        error = float(np.sqrt(np.mean((y - x @ beta) ** 2)))
+        if mejor is None or error < mejor[0]:
+            mejor = (error, lam, beta)
+    error, lam, beta = mejor
+    return CurvaNS(float(beta[0]), float(beta[1]), float(beta[2]), float(lam), error)
+
+
+def puntos_de_curva(datos: pd.DataFrame) -> pd.DataFrame:
+    """Plazo y rendimiento de cada título del vector, por día (formato largo).
+
+    ``datos`` trae las columnas que arma :meth:`banxicolab.Banxico.curva_rendimientos`.
+    Los Cetes se cotizan a tasa de rendimiento; para los Bonos M se calcula el
+    rendimiento a vencimiento con :func:`rendimiento_bono`.
+    """
+    partes = []
+    for nombre in VECTOR_CETES:
+        partes.append(
+            pd.DataFrame(
+                {
+                    "titulo": nombre,
+                    "plazo": datos[f"{nombre}|dias"] / 365.25,
+                    "rendimiento": datos[f"{nombre}|tasa"],
+                }
+            )
+        )
+    for nombre in VECTOR_BONOS:
+        rendimiento = rendimiento_bono(
+            datos[f"{nombre}|precio"], datos[f"{nombre}|cupon"], datos[f"{nombre}|dias"]
+        )
+        partes.append(
+            pd.DataFrame(
+                {
+                    "titulo": nombre,
+                    "plazo": datos[f"{nombre}|dias"] / 365.25,
+                    "rendimiento": rendimiento,
+                }
+            )
+        )
+    largo = pd.concat(partes).dropna()
+    largo.index.name = "fecha"
+    return largo.reset_index().sort_values(["fecha", "plazo"]).reset_index(drop=True)

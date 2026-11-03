@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Si usas esta librería en un trabajo académico, por favor cítala así."
+title: "banxicolab: series del SIE de Banco de México para análisis económico en Python"
+type: software
+authors:
+  - family-names: "Jiménez Preciado"
+    given-names: "Ana Lorena"
+    affiliation: "Escuela Superior de Economía, Instituto Politécnico Nacional"
+version: 0.4.0
+date-released: 2026-11-03
+license: BSD-3-Clause
+repository-code: "https://github.com/AnaJZP/banxicolab"
+url: "https://anajzp.github.io/banxicolab/"
+keywords:
+  - Banco de México
+  - SIE
+  - inflación
+  - series de tiempo
+  - Python

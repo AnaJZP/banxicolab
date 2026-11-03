@@ -42,6 +42,45 @@ quincenal = sie.serie("inpc_quincenal", "2020-01-01")
 sie.variacion_anual(quincenal)  # detecta la frecuencia: compara contra 24 quincenas atrás
 ```
 
+## El mes antes de que se publique
+
+El INPC mensual es, por construcción, el promedio de sus dos quincenas. Cuando
+INEGI publica la primera quincena, solo falta la segunda:
+
+```python
+sie.Banxico().anticipar_inflacion()
+```
+
+```text
+         primera_quincena  mensual  mensual_inf  mensual_sup  anual  anual_inf  anual_sup
+mes
+2026-10-01        146.739    0.533        0.522        0.647  3.630      3.619      3.748
+```
+
+La segunda quincena se estima con el cambio típico entre quincenas **de ese
+mismo mes** en los ocho años anteriores, lo que captura patrones como el fin
+de los subsidios eléctricos de verano. El rango va del año de referencia más
+bajo al más alto.
+
+Para saber cuánto confiar, `historial=True` repite la estimación en cada mes
+pasado con lo que se sabía entonces:
+
+```python
+historial = sie.Banxico().anticipar_inflacion(historial=True)
+```
+
+Con el INPC de 2012 a septiembre de 2026 (177 meses):
+
+| | Valor |
+|---|---|
+| Error típico en la inflación mensual | 0.09 puntos porcentuales |
+| Error típico en la inflación anual | 0.09 puntos porcentuales |
+| Meses en que el dato cayó dentro del rango | 77 % |
+| Error típico si se supone que la segunda quincena repite a la primera | 0.11 puntos |
+
+Si el mes más reciente ya tiene sus dos quincenas, su inflación ya se conoce y
+la función lo indica.
+
 ## Pronóstico
 
 ```python

@@ -1,0 +1,14 @@
+{
+  "title": "banxicolab: series del SIE de Banco de México para análisis económico en Python",
+  "upload_type": "software",
+  "description": "Librería en Python para descargar y analizar las series del Sistema de Información Económica (SIE) de Banco de México: inflación, tipo de cambio, tasas de interés, rendimientos de bonos e inflación implícita.",
+  "creators": [
+    {
+      "name": "Jiménez Preciado, Ana Lorena",
+      "affiliation": "Escuela Superior de Economía, Instituto Politécnico Nacional"
+    }
+  ],
+  "license": "BSD-3-Clause",
+  "language": "spa",
+  "keywords": ["Banco de México", "SIE", "inflación", "series de tiempo", "Python"]
+}

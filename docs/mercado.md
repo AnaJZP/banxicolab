@@ -130,3 +130,46 @@ de_mercado = sie.a_mensual(bei["real"], "promedio")  # Udibono
 
 La postura de la política monetaria se evalúa con la **ex-ante**; la ex-post
 mide lo que efectivamente ganó quien invirtió.
+
+## Curva de rendimientos
+
+Con los Cetes de 28 a 364 días y los Bonos M de referencia de hasta 30 años se
+arma la curva del día y se ajusta una curva de Nelson-Siegel:
+
+```python
+curva = sie.Banxico().curva_rendimientos()     # o curva_rendimientos("2020-03-13")
+curva.attrs["curva"]
+```
+
+```text
+CurvaNS(nivel=9.762, pendiente=-3.332, curvatura=3.865, lam=5.66, error=0.038)
+```
+
+La tabla trae, por título, el plazo en años, el rendimiento observado y el
+ajustado. La curva se evalúa en cualquier plazo: `curva.attrs["curva"](7)` da
+la tasa a siete años.
+
+| Parámetro | Qué mide |
+|---|---|
+| `nivel` | la tasa de largo plazo |
+| `pendiente` | corto menos largo plazo; negativa cuando las tasas largas son mayores |
+| `curvatura` | la joroba en los plazos medios |
+| `lam` | en qué plazo (años) se ubica la joroba |
+| `error` | qué tan bien ajusta, en puntos porcentuales |
+
+Para seguir la curva en el tiempo:
+
+```python
+historia = sie.Banxico().curva_historica("2021-01-01")
+historia[["3m", "2a", "10a", "30a"]]
+```
+
+Ajusta la curva cada día y la evalúa en plazos fijos (3 meses a 30 años, o
+los que indiques con `plazos=`), junto con los parámetros. La inversión de
+2023, cuando la tasa a 3 meses superó a la de 10 años, se ve con claridad.
+
+!!! note "Qué es y qué no es"
+    Son rendimientos a vencimiento de los títulos de referencia, no una curva
+    cupón cero. Los Cetes cotizan a tasa de rendimiento y los Bonos M a
+    rendimiento con cupones semestrales: convenciones cercanas pero no
+    idénticas. La función general es `sie.nelson_siegel(plazos, rendimientos)`.

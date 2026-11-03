@@ -20,12 +20,14 @@ theme:
 extra_css: [estilo.css]
 nav:
   - Inicio: index.md
+  - Ejemplos: ejemplos.md
   - Token: token.md
   - Descargar series: descarga.md
   - Transformaciones: transformaciones.md
   - Inflación: inflacion.md
   - Tendencia y pronósticos: pronosticos.md
   - Rendimientos e inflación implícita: mercado.md
+  - Gráficas: graficas.md
   - Catálogo de alias: catalogo.md
   - Referencia: referencia.md
 plugins:

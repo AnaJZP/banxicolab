@@ -1,5 +1,19 @@
 # Cambios
 
+## 0.4.0 — 2026-11-03
+
+- `anticipar_inflacion`: estima la inflación del mes con su primera quincena ya publicada, con
+  rango y validación histórica (`historial=True`).
+- `contribuciones` y `Banxico.contribuciones_inflacion`: aportación de cada componente a la
+  inflación, exacta dentro de cada periodo de ponderadores y encadenada entre periodos.
+- `nelson_siegel`, `Banxico.curva_rendimientos` y `Banxico.curva_historica`: curva de
+  rendimientos de Cetes y Bonos M.
+- `graficar` y `PALETA`: gráficas con estilo propio y la fuente citada.
+- Caché en disco: `Banxico(cache="disco")` o `configurar(cache="disco")`.
+- Alias nuevos: `inpc_mercancias`, `inpc_servicios`, `inpc_agropecuarios`, `inpc_energeticos`.
+- Notebooks de ejemplo que se abren en Google Colab e instalan la librería solos.
+- Revisión semanal automática contra la API de Banxico y archivo de cita (`CITATION.cff`).
+
 ## 0.3.3 — 2026-10-12
 
 - Se elimina el extra `[analisis]`, que ya no hacía falta.

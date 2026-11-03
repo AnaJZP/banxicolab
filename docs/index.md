@@ -116,6 +116,10 @@ sie.Banxico().inflacion_implicita(10)  # la que descuentan Bonos M y Udibonos
 
 <div class="grid cards" markdown>
 
+-   **[Ejemplos en Colab](ejemplos.md)**
+
+    Tres notebooks listos para abrir en Google Colab con un clic.
+
 -   **[Descargar series](descarga.md)**
 
     Por clave del SIE, por alias o un tema completo. Paneles mensuales, último
@@ -123,7 +127,7 @@ sie.Banxico().inflacion_implicita(10)  # la que descuentan Bonos M y Udibonos
 
 -   **[Catálogo](catalogo.md)**
 
-    Las 35 series con nombre corto: `"inpc"`, `"fix"`, `"cetes_28"`,
+    Las 39 series con nombre corto: `"inpc"`, `"fix"`, `"cetes_28"`,
     `"tasa_objetivo"`…
 
 -   **[Transformaciones](transformaciones.md)**
@@ -137,11 +141,13 @@ sie.Banxico().inflacion_implicita(10)  # la que descuentan Bonos M y Udibonos
 
 -   **[Tendencia y pronósticos](pronosticos.md)**
 
-    Impulso, persistencia y pronósticos SARIMA evaluados fuera de muestra.
+    El mes anticipado con la primera quincena, impulso, persistencia y
+    pronósticos SARIMA evaluados fuera de muestra.
 
 -   **[Rendimientos e inflación implícita](mercado.md)**
 
-    Qué inflación descuentan los precios de los bonos del gobierno.
+    Qué inflación descuentan los bonos del gobierno, y la curva de
+    rendimientos de Cetes y Bonos M.
 
 </div>
 
