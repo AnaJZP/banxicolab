@@ -58,9 +58,9 @@ Cada función devuelve una figura de Plotly, que se puede seguir modificando:
 
 ```python
 fig = sie.graficar(anual, "Inflación anual", unidad="%")
-fig.add_scatter(x=otra.index, y=otra, name="Otra serie")   # agregar una línea
-fig.update_yaxes(range=[0, 10])                            # fijar el eje
-fig.write_html("inflacion.html")                           # página web interactiva
+fig.add_scatter(x=otra.index, y=otra, name="Otra serie")  # agregar una línea
+fig.update_yaxes(range=[0, 10])  # fijar el eje
+fig.write_html("inflacion.html")  # página web interactiva
 ```
 
 Para una imagen fija (PNG o PDF), lo más sencillo es la versión de matplotlib:

@@ -20,7 +20,8 @@ from pathlib import Path
 from .errores import TokenInvalido, TokenNoEncontrado
 
 VARIABLES_DE_ENTORNO = ("BANXICO_TOKEN", "BMX_TOKEN")
-URL_TOKEN = "https://www.banxico.org.mx/SieAPIRest/service/v1/token"
+# Página donde se genera el token (no es un token)
+URL_TOKEN = "https://www.banxico.org.mx/SieAPIRest/service/v1/token"  # nosec B105
 
 _FORMATO = re.compile(r"^[0-9A-Za-z]{64}$")
 
@@ -60,7 +61,8 @@ def _desde_colab() -> str | None:
     for nombre in VARIABLES_DE_ENTORNO:
         try:
             valor = userdata.get(nombre)
-        except Exception:  # el secreto no existe o el notebook no tiene acceso
+        # El secreto no existe o el notebook no tiene acceso: se prueba el siguiente nombre
+        except Exception:  # nosec B112
             continue
         if valor:
             return valor

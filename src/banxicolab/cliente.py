@@ -128,7 +128,8 @@ class Banxico:
     ):
         self._token_explicito = token
         self._token: str | None = None
-        self._origen_token = ""
+        # Describe de dónde salió el token (no es el token)
+        self._origen_token = ""  # nosec B105
         self.timeout = timeout
         self.reintentos = reintentos
         self.espera_maxima = espera_maxima
